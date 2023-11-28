@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_nav_graph"
+    app:startDestination="@id/ticketsListFragment">
+
+    <fragment
+        android:id="@+id/ticketsListFragment"
+        android:name="com.example.trainbookingsystem.presentation.admin.tickets_list.TicketsListFragment"
+        android:label="fragment_tickets_list"
+        tools:layout="@layout/fragment_tickets_list" >
+        <action
+            android:id="@+id/nav_tickets_list_add_ticket"
+            app:destination="@id/createTicketFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ordersFragment"
+        android:name="com.example.trainbookingsystem.presentation.admin.orders.OrdersFragment"
+        android:label="fragment_orders"
+        tools:layout="@layout/fragment_orders" />
+    <fragment
+        android:id="@+id/createTicketFragment"
+        android:name="com.example.trainbookingsystem.presentation.admin.add_tickets.CreateTicketFragment"
+        android:label="fragment_create_ticket"
+        tools:layout="@layout/fragment_create_ticket" />
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.trainbookingsystem.presentation.menu.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
+</navigation>

@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TrainBookingSystem" parent="Theme.Material3.Light">
+        <item name="colorPrimary">@color/darkBlue</item>
+
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.TrainBookingSystem" parent="Base.Theme.TrainBookingSystem" />
+</resources>
