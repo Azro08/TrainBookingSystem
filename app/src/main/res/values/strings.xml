@@ -17,5 +17,13 @@
 
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="from">From</string>
+    <string name="ticket_details">Ticket details</string>
+    <string name="to">To</string>
+    <string name="price">Price</string>
+    <string name="train_number">Train number</string>
+    <string name="seats_amount">Seats amount</string>
+    <string name="save">Save</string>
+    <string name="no_available_tickets">No Available tickets</string>
 
 </resources>

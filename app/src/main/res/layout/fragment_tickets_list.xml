@@ -1,44 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.admin.tickets_list.TicketsListFragment">
 
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loadingGig"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="@drawable/loading_gif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_available_tickets"
+        android:textSize="24sp"
+        android:fontFamily="cursive"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <LinearLayout
-        android:id="@+id/actionBar"
+        android:id="@+id/layoutActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/darkBlue"
+        android:orientation="horizontal"
         android:padding="8dp"
-        android:orientation="horizontal">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="cursive"
             android:text="@string/tickets"
             android:textColor="@color/white"
             android:textSize="24sp"
-            android:textStyle="bold"
-            android:fontFamily="cursive"/>
+            android:textStyle="bold" />
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:background="@drawable/train_logo"/>
+            android:background="@drawable/train_logo" />
 
         <Space
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
         <ImageButton
             android:id="@+id/buttonAddTicket"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:background="@drawable/add_box_icon"/>
+            android:background="@drawable/add_box_icon" />
 
     </LinearLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutActionBar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/from" />
+
+        <ImageButton
+            android:id="@+id/imageButtonDateFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/calendar_icon" />
+
+        <TextView
+            android:id="@+id/textViewDateFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2023-10-11" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/to" />
+
+
+        <ImageButton
+            android:id="@+id/imageButtonDateTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:background="@drawable/calendar_icon"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:id="@+id/textViewDateTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2023-10-11" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editTextFromDest"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:hint="@string/from"
+        android:inputType="text"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/right_arrow_icon"
+        app:layout_constraintStart_toEndOf="@+id/editTextFromDest"
+        app:layout_constraintTop_toBottomOf="@+id/ll" />
+
+    <EditText
+        android:id="@+id/editTextToDest"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/to"
+        android:inputType="text"
+        android:textColor="@color/darkBlue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/ll" />
+
+    <Button
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView2" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTickets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSearch" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
