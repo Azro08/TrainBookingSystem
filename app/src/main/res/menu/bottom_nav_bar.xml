@@ -7,7 +7,7 @@
         android:icon="@drawable/train_icon"/>
 
     <item
-        android:id="@+id/ordersFragment"
+        android:id="@+id/historyFragment"
         android:title="@string/orders"
         android:icon="@drawable/orders_icon"/>
 

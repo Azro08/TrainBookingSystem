@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".presentation.admin.MainActivity">
+    tools:context=".presentation.MainActivity">
 
     <fragment
         android:id="@+id/nav_host"
@@ -15,7 +15,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/admin_nav_graph" />
+        app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavView"
@@ -24,6 +24,6 @@
         app:itemIconTint="@drawable/bottom_nav_item_color"
         app:itemTextColor="@color/black"
         android:background="@color/lightGray"
-        app:menu="@menu/admin_bottom_nav_bar"/>
+        app:menu="@menu/bottom_nav_bar"/>
 
 </LinearLayout>

@@ -2,7 +2,7 @@ package com.example.trainbookingsystem.data.repository
 
 import android.util.Log
 import com.example.trainbookingsystem.data.model.Ticket
-import com.google.api.Billing.BillingDestination
+import com.example.trainbookingsystem.data.model.TicketCheck
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -18,7 +18,11 @@ class TicketsRepository @Inject constructor(
         return ticketsCollection.get().await().toObjects(Ticket::class.java)
     }
 
-    suspend fun getTickets(startDestination: String, endDestination: String, departureTime : String) : List<Ticket>{
+    suspend fun getTickets(
+        startDestination: String,
+        endDestination: String,
+        departureTime: String
+    ): List<Ticket> {
         return try {
             val querySnapshot = ticketsCollection
                 .whereEqualTo("startDestination", startDestination)
@@ -56,6 +60,20 @@ class TicketsRepository @Inject constructor(
     suspend fun deleteTicket(ticketId: String): String {
         return try {
             ticketsCollection.document(ticketId).delete().await()
+            "Done"
+        } catch (e: Exception) {
+            e.message.toString()
+        }
+    }
+
+    suspend fun buyTicket(check: TicketCheck): String {
+        return try {
+            val checksCollection = firestore.collection("checks")
+            checksCollection.document(check.id).set(check).await()
+            val freeSeats: MutableList<Int> =
+                (getTicketById(check.ticket.id)?.freeSeats ?: emptyList()).toMutableList()
+            freeSeats.remove(check.seatNumber)
+            ticketsCollection.document(check.ticket.id).update("freeSeats", freeSeats)
             "Done"
         } catch (e: Exception) {
             e.message.toString()

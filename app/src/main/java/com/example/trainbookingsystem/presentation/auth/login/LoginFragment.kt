@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.databinding.FragmentLoginBinding
-import com.example.trainbookingsystem.presentation.admin.MainActivity
+import com.example.trainbookingsystem.presentation.MainActivity
 import com.example.trainbookingsystem.util.Constants
 import com.example.trainbookingsystem.util.UsersManager
 import dagger.hilt.android.AndroidEntryPoint

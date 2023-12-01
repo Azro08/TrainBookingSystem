@@ -25,5 +25,18 @@
     <string name="seats_amount">Seats amount</string>
     <string name="save">Save</string>
     <string name="no_available_tickets">No Available tickets</string>
+    <string name="buy">Buy</string>
+    <string name="credit_card">Credit card</string>
+    <string name="cash">Cash</string>
+    <string name="card_number">Card Number</string>
+    <string name="expiration_date_mm_yy">Expiration Date (MM/YY)</string>
+    <string name="cvv">CVV</string>
+    <string name="cardholder_name">Cardholder Name</string>
+    <string name="submit">Submit</string>
+    <string name="price_cheap">Price cheap</string>
+    <string name="price_medium">Price medium</string>
+    <string name="price_lux">Price lux</string>
+    <string name="dd_mm_yy">DD/MM/YY</string>
+    <string name="pick_a_seat">Pick a seat</string>
 
 </resources>

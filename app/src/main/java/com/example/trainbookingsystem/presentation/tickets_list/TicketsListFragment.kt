@@ -1,10 +1,11 @@
-package com.example.trainbookingsystem.presentation.admin.tickets_list
+package com.example.trainbookingsystem.presentation.tickets_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,9 +16,10 @@ import com.example.trainbookingsystem.data.model.Ticket
 import com.example.trainbookingsystem.databinding.FragmentTicketsListBinding
 import com.example.trainbookingsystem.util.Constants
 import com.example.trainbookingsystem.util.ScreenState
+import com.example.trainbookingsystem.util.UsersManager
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class TicketsListFragment : Fragment() {
@@ -25,6 +27,7 @@ class TicketsListFragment : Fragment() {
     private val binding get() = _binding!!
     private var ticketsRvAdapter: TicketsListAdapter? = null
     private val viewModel: TicketsListViewModel by viewModels()
+    @Inject lateinit var usersManager: UsersManager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,6 +41,8 @@ class TicketsListFragment : Fragment() {
         binding.buttonAddTicket.setOnClickListener {
             findNavController().navigate(R.id.nav_tickets_list_add_ticket)
         }
+
+        if (usersManager.getRole() == Constants.USER) binding.buttonAddTicket.visibility = View.GONE
 
         binding.imageButtonDateFrom.setOnClickListener {
             Constants.showDateTimePickerDialog(binding.textViewDateFrom, requireContext())
@@ -100,7 +105,9 @@ class TicketsListFragment : Fragment() {
     }
 
     private fun display(ticketList: List<Ticket>) {
-        ticketsRvAdapter = TicketsListAdapter(ticketList) {}
+        ticketsRvAdapter = TicketsListAdapter(ticketList) {
+            findNavController().navigate(R.id.nav_list_buy_ticket, bundleOf(Pair(Constants.TICKET_ID, it.id)))
+        }
         binding.rvTickets.setHasFixedSize(true)
         binding.rvTickets.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTickets.adapter = ticketsRvAdapter

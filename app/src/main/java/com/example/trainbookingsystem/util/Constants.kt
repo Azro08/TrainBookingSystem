@@ -18,12 +18,10 @@ object Constants {
     const val ROLE_KEY = "role_key"
     const val ADMIN = "admin"
     const val USER = "user"
-    const val PRODUCT_ID = "product_id"
-    const val ORDER_ID = "order_id"
+    const val TICKET_ID = "ticket_id"
     const val USER_ID = "user_id"
     const val EMAIL = "email"
     const val LANGUAGE_KEY = "language_key"
-
     fun showDateTimePickerDialog(textView: TextView, context : Context) {
         val calendar = Calendar.getInstance()
 

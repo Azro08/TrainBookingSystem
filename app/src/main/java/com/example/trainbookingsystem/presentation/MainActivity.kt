@@ -1,19 +1,16 @@
-package com.example.trainbookingsystem.presentation.admin
+package com.example.trainbookingsystem.presentation
 
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.databinding.ActivityMainBinding
 import com.example.trainbookingsystem.presentation.auth.AuthActivity
-import com.example.trainbookingsystem.presentation.users.UserActivity
-import com.example.trainbookingsystem.util.Constants
 import com.example.trainbookingsystem.util.UsersManager
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -22,7 +19,8 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
-    @Inject lateinit var usersManager: UsersManager
+    @Inject
+    lateinit var usersManager: UsersManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -35,24 +33,11 @@ class MainActivity : AppCompatActivity() {
     private fun getUser() {
         if (!usersManager.isLoggedIn()) {
             navToAuthActivity()
-        } else getRole()
-    }
-
-    private fun getRole() {
-        when (usersManager.getRole()) {
-            Constants.USER -> navToUserActivity()
-            Constants.ADMIN -> {}
-            else -> navToAuthActivity()
         }
     }
 
     private fun navToAuthActivity() {
         startActivity(Intent(this@MainActivity, AuthActivity::class.java))
-        this.finish()
-    }
-
-    private fun navToUserActivity() {
-        startActivity(Intent(this@MainActivity, UserActivity::class.java))
         this.finish()
     }
 
@@ -63,14 +48,14 @@ class MainActivity : AppCompatActivity() {
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.ticketsListFragment,
-                R.id.ordersFragment,
+                R.id.historyFragment,
                 R.id.menuFragment
             )
         )
 
         val topLevelDestinations = setOf(
             R.id.ticketsListFragment,
-            R.id.ordersFragment,
+            R.id.historyFragment,
             R.id.menuFragment
         )
         // Show the bottom navigation view for top-level destinations only

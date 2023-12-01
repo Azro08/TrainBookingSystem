@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.admin.tickets_list.TicketsListFragment">
+    tools:context=".presentation.tickets_list.TicketsListFragment">
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/loadingGig"

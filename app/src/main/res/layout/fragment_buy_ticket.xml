@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.buy.BuyTicketFragment"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/textViewDestFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "Minsk"
+            android:textColor="@color/darkBlue"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewTimeFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "2023-10-10 14:20"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp"
+            android:layout_marginTop="7dp"/>
+
+        <TextView
+            android:id="@+id/textViewTrainNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "No102"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp"
+            android:layout_marginTop="7dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/right_arrow_icon"
+            android:layout_gravity="start"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/textViewDestTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "Vitebsk"
+            android:textColor="@color/darkBlue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewTimeTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "2023-10-10 14:20"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp"
+            android:layout_marginTop="7dp"/>
+
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "12,4руб"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="7dp"/>
+
+        <Button
+            android:id="@+id/buttonBuyTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:text="@string/buy"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/layoutBuyTicket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <TextView
+                android:text = "@string/pick_a_seat"
+                android:layout_width="wrap_content"
+                android:textSize="14sp"
+                android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAvailableSeats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroupPaymentType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="10dp">
+
+                <RadioButton
+                    android:id="@+id/radioButtonCash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cash" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonCreditCard"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/credit_card" />
+
+            </RadioGroup>
+
+            <!-- credit_card_details_layout.xml -->
+
+            <LinearLayout
+                android:background="@color/lightGray"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <EditText
+                    android:id="@+id/editTextCardNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/card_number"
+                    android:inputType="number"
+                    android:maxLines="1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextExpirationDate"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/dd_mm_yy"
+                        android:inputType="date"
+                        android:maxLines="1"/>
+
+                    <EditText
+                        android:id="@+id/editTextCVV"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="@string/cvv"
+                        android:inputType="number"
+                        android:maxLines="1"/>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/editTextCardHolderName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/cardholder_name"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"/>
+
+            </LinearLayout>
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/buttonLoadingGif"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:background="@drawable/loading_gif"/>
+
+            <Button
+                android:id="@+id/buttonSubmitTicket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/submit"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"/>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>

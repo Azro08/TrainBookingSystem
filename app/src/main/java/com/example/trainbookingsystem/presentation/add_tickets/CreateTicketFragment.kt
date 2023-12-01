@@ -1,14 +1,9 @@
-package com.example.trainbookingsystem.presentation.admin.add_tickets
+package com.example.trainbookingsystem.presentation.add_tickets
 
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.TextView
-import android.widget.TimePicker
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,10 +15,6 @@ import com.example.trainbookingsystem.databinding.FragmentCreateTicketBinding
 import com.example.trainbookingsystem.util.Constants
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 @AndroidEntryPoint
 class CreateTicketFragment : Fragment() {
@@ -64,7 +55,10 @@ class CreateTicketFragment : Fragment() {
         val trainNo = binding.editTextTrainNum.text.toString().toInt()
         val fromDate = binding.textViewDateFrom.text.toString()
         val toDate = binding.textViewDateTo.text.toString()
-        val price = binding.editTextPrice.text.toString().toDouble()
+        val price1 = binding.editTextPrice1.text.toString().toDouble()
+        val price2 = binding.editTextPrice2.text.toString().toDouble()
+        val price3 = binding.editTextPrice3.text.toString().toDouble()
+        val price = listOf(price1, price2, price3)
         val seats = binding.editTextSeatsNum.text.toString().toInt()
         val freeSeats = mutableListOf<Int>()
         for (i in 1..seats) freeSeats.add(i)
@@ -101,11 +95,13 @@ class CreateTicketFragment : Fragment() {
         val trainNo = binding.editTextTrainNum.text.toString()
         val fromDate = binding.textViewDateFrom.text.toString()
         val toDate = binding.textViewDateTo.text.toString()
-        val price = binding.editTextPrice.text.toString()
+        val price1 = binding.editTextPrice1.text.toString()
+        val price2 = binding.editTextPrice2.text.toString()
+        val price3 = binding.editTextPrice3.text.toString()
         val seats = binding.editTextSeatsNum.text.toString()
 
         return (fromDest.isNotEmpty() || toDest.isNotEmpty() || trainNo.isNotEmpty()
-                || fromDate.isNotEmpty() || toDate.isNotEmpty() || price.isNotEmpty() || seats.isNotEmpty())
+                || fromDate.isNotEmpty() || toDate.isNotEmpty() || price1.isNotEmpty() || price2.isNotEmpty() || price3.isNotEmpty()|| seats.isNotEmpty())
     }
 
     override fun onDestroy() {

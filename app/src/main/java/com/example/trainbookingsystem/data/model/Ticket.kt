@@ -6,7 +6,11 @@ data class Ticket(
     val endDestination : String = "",
     val trainNum : Int = 0,
     val freeSeats : List<Int> = emptyList(),
-    val price : Double = 0.0,
+    val price : List<Double> = emptyList(),
     val departureTime : String = "",
     val arrivalTime : String = "",
 )
+
+fun List<Double>.priceListToString() : String{
+    return this.joinToString(", ") { "%.1fруб".format(it) }
+}

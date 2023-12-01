@@ -7,21 +7,24 @@
 
     <fragment
         android:id="@+id/ticketsListFragment"
-        android:name="com.example.trainbookingsystem.presentation.admin.tickets_list.TicketsListFragment"
+        android:name="com.example.trainbookingsystem.presentation.tickets_list.TicketsListFragment"
         android:label="fragment_tickets_list"
         tools:layout="@layout/fragment_tickets_list" >
         <action
             android:id="@+id/nav_tickets_list_add_ticket"
             app:destination="@id/createTicketFragment" />
+        <action
+            android:id="@+id/nav_list_buy_ticket"
+            app:destination="@id/buyTicketFragment" />
     </fragment>
     <fragment
-        android:id="@+id/ordersFragment"
-        android:name="com.example.trainbookingsystem.presentation.admin.orders.OrdersFragment"
+        android:id="@+id/historyFragment"
+        android:name="com.example.trainbookingsystem.presentation.history.HistoryFragment"
         android:label="fragment_orders"
-        tools:layout="@layout/fragment_orders" />
+        tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/createTicketFragment"
-        android:name="com.example.trainbookingsystem.presentation.admin.add_tickets.CreateTicketFragment"
+        android:name="com.example.trainbookingsystem.presentation.add_tickets.CreateTicketFragment"
         android:label="fragment_create_ticket"
         tools:layout="@layout/fragment_create_ticket" />
     <fragment
@@ -29,4 +32,9 @@
         android:name="com.example.trainbookingsystem.presentation.menu.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" />
+    <fragment
+        android:id="@+id/buyTicketFragment"
+        android:name="com.example.trainbookingsystem.presentation.buy.BuyTicketFragment"
+        android:label="fragment_buy_ticket"
+        tools:layout="@layout/fragment_buy_ticket" />
 </navigation>

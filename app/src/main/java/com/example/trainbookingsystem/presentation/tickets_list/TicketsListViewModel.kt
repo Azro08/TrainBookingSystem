@@ -1,4 +1,4 @@
-package com.example.trainbookingsystem.presentation.admin.tickets_list
+package com.example.trainbookingsystem.presentation.tickets_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

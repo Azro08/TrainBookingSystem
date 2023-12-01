@@ -1,9 +1,10 @@
-package com.example.trainbookingsystem.presentation.admin.tickets_list
+package com.example.trainbookingsystem.presentation.tickets_list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trainbookingsystem.data.model.Ticket
+import com.example.trainbookingsystem.data.model.priceListToString
 import com.example.trainbookingsystem.databinding.TicketHolderBinding
 
 class TicketsListAdapter (
@@ -22,7 +23,7 @@ class TicketsListAdapter (
             binding.textViewTimeTo.text = currentTicket.arrivalTime
             val trainNo = "Train No ${currentTicket.trainNum}"
             binding.textViewTrainNum.text = trainNo
-            val price = "${currentTicket.price} руб"
+            val price = currentTicket.price.priceListToString()
             binding.textViewPrice.text = price
             ticket = currentTicket
         }
