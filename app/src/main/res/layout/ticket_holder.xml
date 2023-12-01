@@ -83,6 +83,15 @@
             android:textSize="16sp"
             />
 
+        <ImageButton
+            android:id="@+id/buttonDeleteTicket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/delete_icon"
+            android:layout_gravity="end"
+            android:layout_marginEnd ="10dp"
+            android:layout_marginTop="15dp"/>
+
     </LinearLayout>
 
 </LinearLayout>

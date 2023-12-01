@@ -27,7 +27,8 @@ class TicketsListFragment : Fragment() {
     private val binding get() = _binding!!
     private var ticketsRvAdapter: TicketsListAdapter? = null
     private val viewModel: TicketsListViewModel by viewModels()
-    @Inject lateinit var usersManager: UsersManager
+    @Inject
+    lateinit var usersManager: UsersManager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -57,7 +58,11 @@ class TicketsListFragment : Fragment() {
                 binding.loadingGig.visibility = View.VISIBLE
                 binding.rvTickets.visibility = View.GONE
                 getTickets()
-            } else Toast.makeText(requireContext(), getString(R.string.fill_upFields), Toast.LENGTH_SHORT).show()
+            } else Toast.makeText(
+                requireContext(),
+                getString(R.string.fill_upFields),
+                Toast.LENGTH_SHORT
+            ).show()
         }
 
     }
@@ -65,7 +70,7 @@ class TicketsListFragment : Fragment() {
     private fun getAllTickets() {
         lifecycleScope.launch {
             viewModel.getAllTickets()
-            viewModel.ticketsList.collect{state ->
+            viewModel.ticketsList.collect { state ->
                 processResponse(state)
             }
         }
@@ -105,12 +110,28 @@ class TicketsListFragment : Fragment() {
     }
 
     private fun display(ticketList: List<Ticket>) {
-        ticketsRvAdapter = TicketsListAdapter(ticketList) {
-            findNavController().navigate(R.id.nav_list_buy_ticket, bundleOf(Pair(Constants.TICKET_ID, it.id)))
-        }
+        ticketsRvAdapter = TicketsListAdapter(
+            usersManager.getRole(),
+            ticketList,
+            { navToBuyTicket(it.id) },
+            { deleteTicket(it.id) })
         binding.rvTickets.setHasFixedSize(true)
         binding.rvTickets.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTickets.adapter = ticketsRvAdapter
+    }
+
+    private fun navToBuyTicket(ticketId: String) {
+        if (usersManager.getRole() == Constants.USER)
+            findNavController().navigate(
+                R.id.nav_list_buy_ticket,
+                bundleOf(Pair(Constants.TICKET_ID, ticketId))
+            )
+    }
+
+    private fun deleteTicket(id: String) {
+        lifecycleScope.launch {
+            viewModel.deleteTicket(id)
+        }
     }
 
     private fun handleError() {

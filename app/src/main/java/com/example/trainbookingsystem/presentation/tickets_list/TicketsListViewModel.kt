@@ -25,6 +25,11 @@ class TicketsListViewModel @Inject constructor(
         }
     }
 
+    fun deleteTicket(ticketId: String) = viewModelScope.launch {
+        ticketsRepository.deleteTicket(ticketId)
+        getAllTickets()
+    }
+
     fun getAllTickets() = viewModelScope.launch {
         ticketsRepository.getAllTickets().let {
             if (it.isNotEmpty()) _ticketsList.value = ScreenState.Success(it)

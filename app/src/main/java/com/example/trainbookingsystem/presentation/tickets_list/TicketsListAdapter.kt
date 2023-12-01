@@ -1,22 +1,30 @@
 package com.example.trainbookingsystem.presentation.tickets_list
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trainbookingsystem.data.model.Ticket
 import com.example.trainbookingsystem.data.model.priceListToString
 import com.example.trainbookingsystem.databinding.TicketHolderBinding
+import com.example.trainbookingsystem.util.Constants
 
-class TicketsListAdapter (
-    private val tickets : List<Ticket>,
-    private val listener : (ticket : Ticket) -> Unit) : RecyclerView.Adapter<TicketsListAdapter.TicketViewHolder>(){
+class TicketsListAdapter(
+    private val role: String,
+    private val tickets: List<Ticket>,
+    private val listener: (ticket: Ticket) -> Unit,
+    private val deleteListener: (ticket: Ticket) -> Unit
+) : RecyclerView.Adapter<TicketsListAdapter.TicketViewHolder>() {
 
     class TicketViewHolder(
+        private val role: String,
         listener: (ticket: Ticket) -> Unit,
-        private val binding : TicketHolderBinding
-    ) : RecyclerView.ViewHolder(binding.root){
-        private var ticket : Ticket? = null
-        fun bind(currentTicket : Ticket){
+        deleteListener: (ticket: Ticket) -> Unit,
+        private val binding: TicketHolderBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        private var ticket: Ticket? = null
+        fun bind(currentTicket: Ticket) {
+            if (role == Constants.USER) binding.buttonDeleteTicket.visibility = View.GONE
             binding.textViewDestFrom.text = currentTicket.startDestination
             binding.textViewDestTo.text = currentTicket.endDestination
             binding.textViewTimeFrom.text = currentTicket.departureTime
@@ -29,13 +37,19 @@ class TicketsListAdapter (
         }
 
         init {
-            binding.root.setOnClickListener {listener(ticket!!)}
+            binding.root.setOnClickListener { listener(ticket!!) }
+            binding.buttonDeleteTicket.setOnClickListener { deleteListener(ticket!!) }
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TicketViewHolder {
-        return TicketViewHolder(listener, TicketHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return TicketViewHolder(
+            role,
+            listener,
+            deleteListener,
+            TicketHolderBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        )
     }
 
     override fun getItemCount(): Int {
