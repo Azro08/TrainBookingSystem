@@ -31,10 +31,19 @@
         android:id="@+id/menuFragment"
         android:name="com.example.trainbookingsystem.presentation.menu.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/nav_menu_profile"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/buyTicketFragment"
         android:name="com.example.trainbookingsystem.presentation.buy.BuyTicketFragment"
         android:label="fragment_buy_ticket"
         tools:layout="@layout/fragment_buy_ticket" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.trainbookingsystem.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

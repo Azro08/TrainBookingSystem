@@ -1,6 +1,7 @@
 package com.example.trainbookingsystem.di
 
 import android.content.Context
+import com.example.trainbookingsystem.util.LocaleUtils
 import com.example.trainbookingsystem.util.UsersManager
 import dagger.Module
 import dagger.Provides
@@ -16,5 +17,10 @@ object AppModule {
     @Singleton
     fun provideUsersManager(@ApplicationContext context: Context): UsersManager =
         UsersManager(context)
+
+    @Provides
+    @Singleton
+    fun provideLocaleInstance(@ApplicationContext context: Context): LocaleUtils =
+        LocaleUtils(context)
 
 }

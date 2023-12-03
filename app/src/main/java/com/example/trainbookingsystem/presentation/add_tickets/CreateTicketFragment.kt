@@ -13,6 +13,7 @@ import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.data.model.Ticket
 import com.example.trainbookingsystem.databinding.FragmentCreateTicketBinding
 import com.example.trainbookingsystem.util.Constants
+import com.example.trainbookingsystem.util.DateUtils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -40,11 +41,11 @@ class CreateTicketFragment : Fragment() {
         }
 
         binding.imageButtonDateFrom.setOnClickListener {
-            Constants.showDateTimePickerDialog(binding.textViewDateFrom, requireContext())
+            DateUtils.showDateTimePickerDialog(binding.textViewDateFrom, requireContext())
         }
 
         binding.imageButtonDateTo.setOnClickListener {
-            Constants.showDateTimePickerDialog(binding.textViewDateTo, requireContext())
+            DateUtils.showDateTimePickerDialog(binding.textViewDateTo, requireContext())
         }
     }
 
@@ -101,7 +102,7 @@ class CreateTicketFragment : Fragment() {
         val seats = binding.editTextSeatsNum.text.toString()
 
         return (fromDest.isNotEmpty() || toDest.isNotEmpty() || trainNo.isNotEmpty()
-                || fromDate.isNotEmpty() || toDate.isNotEmpty() || price1.isNotEmpty() || price2.isNotEmpty() || price3.isNotEmpty()|| seats.isNotEmpty())
+                || fromDate.isNotEmpty() || toDate.isNotEmpty() || price1.isNotEmpty() || price2.isNotEmpty() || price3.isNotEmpty() || seats.isNotEmpty())
     }
 
     override fun onDestroy() {

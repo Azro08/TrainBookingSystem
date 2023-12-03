@@ -18,8 +18,11 @@ class TicketsListViewModel @Inject constructor(
     private val _ticketsList = MutableStateFlow<ScreenState<List<Ticket>?>>(ScreenState.Loading())
     val ticketsList = _ticketsList
 
-    fun getTickets(startDestination: String, endDestination: String, departureTime : String) = viewModelScope.launch {
-        ticketsRepository.getTickets(startDestination, endDestination, departureTime).let {
+    fun getTickets(startDestination: String,
+                   endDestination: String,
+                   departureTime: String,
+                   arrivalTime: String) = viewModelScope.launch {
+        ticketsRepository.getFilteredTickets(startDestination, endDestination, departureTime, arrivalTime).let {
             if (it.isNotEmpty()) _ticketsList.value = ScreenState.Success(it)
             else _ticketsList.value = ScreenState.Error("Нет доступных билетов")
         }
@@ -35,6 +38,10 @@ class TicketsListViewModel @Inject constructor(
             if (it.isNotEmpty()) _ticketsList.value = ScreenState.Success(it)
             else _ticketsList.value = ScreenState.Error("Нет доступных билетов")
         }
+    }
+
+    fun refreshTickets() {
+        getAllTickets()
     }
 
 }

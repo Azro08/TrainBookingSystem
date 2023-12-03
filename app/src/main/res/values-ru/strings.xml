@@ -1,0 +1,51 @@
+<resources>
+    <string name="app_name">Система бронирования билетов на поезд</string>
+    <string name="fill_upFields">Заполните все поля</string>
+    <string name="email">Электронная почта</string>
+    <string name="fullname">Полное имя</string>
+    <string name="passport_no">Номер паспорта</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="password">Пароль</string>
+    <string name="confirm_password">Подтвердите пароль</string>
+    <string name="signup">Зарегистрироваться</string>
+    <string name="passwords_dont_match">Пароли не совпадают!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Привет, пустой фрагмент</string>
+    <string name="tickets">Билеты</string>
+    <string name="orders">Заказы</string>
+    <string name="menu">Меню</string>
+
+    <string name="login">Войти</string>
+    <string name="register">Зарегистрироваться</string>
+    <string name="from">Откуда</string>
+    <string name="ticket_details">Детали билета</string>
+    <string name="to">Куда</string>
+    <string name="price">Цена</string>
+    <string name="train_number">Номер поезда</string>
+    <string name="seats_amount">Количество мест</string>
+    <string name="save">Сохранить</string>
+    <string name="no_available_tickets">Нет доступных билетов</string>
+    <string name="buy">Купить</string>
+    <string name="credit_card">Кредитная карта</string>
+    <string name="cash">Наличные</string>
+    <string name="card_number">Номер карты</string>
+    <string name="expiration_date_mm_yy">Дата окончания срока действия (ММ/ГГ)</string>
+    <string name="cvv">CVV</string>
+    <string name="cardholder_name">Имя владельца карты</string>
+    <string name="submit">Отправить</string>
+    <string name="price_cheap">Дешевая цена</string>
+    <string name="price_medium">Средняя цена</string>
+    <string name="price_lux">Дорогая цена</string>
+    <string name="dd_mm_yy">ДД/ММ/ГГ</string>
+    <string name="pick_a_seat">Выберите место</string>
+    <string name="history">История</string>
+    <string name="old_password_is_required">Требуется старый пароль</string>
+    <string name="error">Ошибка</string>
+    <string name="language">Язык</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="logout">Выйти</string>
+    <string name="profile">Профиль</string>
+    <string name="old_password">Старый пароль</string>
+    <string name="new_password">Новый пароль</string>
+    <string name="search">поиск</string>
+</resources>

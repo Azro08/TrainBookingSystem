@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    android:padding="6dp"
+    android:background="@color/lightGray"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.5">
+
+        <TextView
+            android:id="@+id/textViewDestFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "Minsk"
+            android:textColor="@color/darkBlue"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewTimeFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "2023-10-10 14:20"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/textViewTrainNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "No102"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewBoughtAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "2023/10/10"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/right_arrow_icon"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="0.5">
+
+        <TextView
+            android:id="@+id/textViewDestTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "Vitebsk"
+            android:textColor="@color/darkBlue"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textViewTimeTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "2023-10-10 14:20"
+            android:textColor="@color/darkBlue"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text = "12,4руб"
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

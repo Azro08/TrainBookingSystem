@@ -1,5 +1,7 @@
 package com.example.trainbookingsystem.presentation
 
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -11,7 +13,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.databinding.ActivityMainBinding
 import com.example.trainbookingsystem.presentation.auth.AuthActivity
+import com.example.trainbookingsystem.util.Constants
 import com.example.trainbookingsystem.util.UsersManager
+import com.example.trainbookingsystem.util.setLocale
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -21,6 +25,13 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
     @Inject
     lateinit var usersManager: UsersManager
+
+    override fun attachBaseContext(newBase: Context?) {
+        val lang = newBase?.getSharedPreferences(Constants.SHARED_PREF_NAME, Context.MODE_PRIVATE)
+            ?.getString(Constants.LANGUAGE_KEY, "en")!!.toString()
+        super.attachBaseContext(ContextWrapper(newBase.setLocale(lang)))
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)

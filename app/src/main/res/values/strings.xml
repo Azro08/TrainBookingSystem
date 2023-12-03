@@ -38,5 +38,15 @@
     <string name="price_lux">Price lux</string>
     <string name="dd_mm_yy">DD/MM/YY</string>
     <string name="pick_a_seat">Pick a seat</string>
+    <string name="history">History</string>
+    <string name="old_password_is_required">Old password is required</string>
+    <string name="error">Error</string>
+    <string name="language">Language</string>
+    <string name="feedback">Feedback</string>
+    <string name="logout">Logout</string>
+    <string name="profile">Profile</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
+    <string name="search">search</string>
 
 </resources>

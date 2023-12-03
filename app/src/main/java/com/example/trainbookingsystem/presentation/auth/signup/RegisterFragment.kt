@@ -48,7 +48,7 @@ class RegisterFragment : Fragment() {
         val password = binding.editTextPassword.text.toString()
         val rePassword = binding.editTextConfirmPassword.text.toString()
         val passportNo = binding.editTextPassportNum.text.toString()
-        val phoneNumber = binding.editTextRePhoneNumber.text.toString()
+        val phoneNumber = binding.editTextPhoneNumber.text.toString()
         val fullName = binding.editTextFullName.text.toString()
         if (password == rePassword) {
             val newUser = Account(
@@ -85,7 +85,7 @@ class RegisterFragment : Fragment() {
         val password = binding.editTextPassword.text.toString()
         val confirmPassword = binding.editTextConfirmPassword.text.toString()
         val passportNo = binding.editTextPassportNum.text.toString()
-        val phoneNumber = binding.editTextRePhoneNumber.text.toString()
+        val phoneNumber = binding.editTextPhoneNumber.text.toString()
         val fullName = binding.editTextFullName.text.toString()
 
         return !(email.isEmpty() || password.isEmpty() || passportNo.isEmpty() || phoneNumber.isEmpty() || fullName.isEmpty() || confirmPassword.isEmpty())

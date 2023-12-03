@@ -15,6 +15,7 @@ import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.data.model.Ticket
 import com.example.trainbookingsystem.databinding.FragmentTicketsListBinding
 import com.example.trainbookingsystem.util.Constants
+import com.example.trainbookingsystem.util.DateUtils
 import com.example.trainbookingsystem.util.ScreenState
 import com.example.trainbookingsystem.util.UsersManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +28,7 @@ class TicketsListFragment : Fragment() {
     private val binding get() = _binding!!
     private var ticketsRvAdapter: TicketsListAdapter? = null
     private val viewModel: TicketsListViewModel by viewModels()
+
     @Inject
     lateinit var usersManager: UsersManager
     override fun onCreateView(
@@ -46,18 +48,26 @@ class TicketsListFragment : Fragment() {
         if (usersManager.getRole() == Constants.USER) binding.buttonAddTicket.visibility = View.GONE
 
         binding.imageButtonDateFrom.setOnClickListener {
-            Constants.showDateTimePickerDialog(binding.textViewDateFrom, requireContext())
+            DateUtils.showDateTimePickerDialog(binding.textViewDateFrom, requireContext())
         }
 
         binding.imageButtonDateTo.setOnClickListener {
-            Constants.showDateTimePickerDialog(binding.textViewDateTo, requireContext())
+            DateUtils.showDateTimePickerDialog(binding.textViewDateTo, requireContext())
+        }
+
+        binding.buttonUpdate.setOnClickListener {
+            viewModel.refreshTickets()
+            binding.editTextToDest.setText("")
+            binding.editTextFromDest.setText("")
+            binding.textViewDateFrom.text = ""
+            binding.textViewDateTo.text = ""
         }
 
         binding.buttonSearch.setOnClickListener {
             if (areAllFieldsFilled()) {
                 binding.loadingGig.visibility = View.VISIBLE
                 binding.rvTickets.visibility = View.GONE
-                getTickets()
+                getFilteredTickets()
             } else Toast.makeText(
                 requireContext(),
                 getString(R.string.fill_upFields),
@@ -95,13 +105,16 @@ class TicketsListFragment : Fragment() {
     }
 
 
-    private fun getTickets() {
+    private fun getFilteredTickets() {
         val startDest = binding.editTextFromDest.text.toString()
         val endDest = binding.editTextToDest.text.toString()
-        val date = binding.editTextFromDest.text.toString()
+        var departureTime = binding.textViewDateFrom.text.toString()
+        var arrivalTime = binding.textViewDateTo.text.toString()
+        if (departureTime.isEmpty()) departureTime = ""
+        if (arrivalTime.isEmpty()) arrivalTime = ""
 
         lifecycleScope.launch {
-            viewModel.getTickets(startDest, endDest, date)
+            viewModel.getTickets(startDest, endDest, departureTime, arrivalTime)
             viewModel.ticketsList.collect { state ->
                 processResponse(state)
             }
@@ -143,9 +156,20 @@ class TicketsListFragment : Fragment() {
     private fun areAllFieldsFilled(): Boolean {
         val startDest = binding.editTextFromDest.text.toString()
         val endDest = binding.editTextToDest.text.toString()
-        val date = binding.editTextFromDest.text.toString()
-        return (startDest.isNotEmpty() && endDest.isNotEmpty() && date.isNotEmpty())
+        val departureTime = binding.textViewDateFrom.text.toString()
+        val arrivalTime = binding.textViewDateTo.text.toString()
+
+        return when {
+            startDest.isNotEmpty() && endDest.isNotEmpty() -> {
+                if (departureTime.isNotEmpty() && arrivalTime.isEmpty()) {
+                    false // Arrival time is required if departure time is specified
+                } else !(arrivalTime.isNotEmpty() && departureTime.isEmpty())
+            }
+
+            else -> true // If start and/or end destinations are empty, ignore time validations
+        }
     }
+
 
     override fun onDestroy() {
         super.onDestroy()

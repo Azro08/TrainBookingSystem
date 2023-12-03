@@ -16,6 +16,7 @@ import com.example.trainbookingsystem.data.model.TicketCheck
 import com.example.trainbookingsystem.data.model.priceListToString
 import com.example.trainbookingsystem.databinding.FragmentBuyTicketBinding
 import com.example.trainbookingsystem.util.Constants
+import com.example.trainbookingsystem.util.DateUtils
 import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,7 +31,6 @@ class BuyTicketFragment : Fragment() {
     private var seatsRvAdapter: SeatsRvAdapter? = null
     private var selectedSeat = 0
     private var price = 0.0
-
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
     override fun onCreateView(
@@ -64,7 +64,7 @@ class BuyTicketFragment : Fragment() {
         val cardDetails = getCardDetails()
         val paymentMethod = getPaymentMethod()
         val userId = firebaseAuth.currentUser?.uid ?: ""
-        val date = Constants.getCurrentDate()
+        val date = DateUtils.getCurrentDate()
         val id = Constants.generateRandomId()
         if (ticket == null) ticket = Ticket()
         val ticketCheck = TicketCheck(
@@ -94,7 +94,7 @@ class BuyTicketFragment : Fragment() {
 
     private fun getCardDetails(): CardDetails {
         return if (getPaymentMethod() == "Cash") CardDetails()
-        else{
+        else {
             val cardNum = binding.editTextCardNumber.text.toString().toInt()
             val cardExp = binding.editTextExpirationDate.text.toString()
             val cardCvv = binding.editTextCVV.text.toString().toInt()
