@@ -56,5 +56,7 @@
     <string name="add_ticket">Add ticket</string>
     <string name="user_was_not_found">User was not found</string>
     <string name="login_successful">Login Successful</string>
+    <string name="incorrect_password">Incorrect password</string>
+    <string name="account_not_found">Account not found</string>
 
 </resources>

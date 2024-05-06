@@ -1,38 +1,53 @@
 package com.example.trainbookingsystem.data.repository
 
+import android.content.Context
 import android.util.Log
+import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.data.model.Account
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
 class AuthRepository @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val firestore: FirebaseFirestore,
-    private val usersRepository: UsersRepository
+    private val usersRepository: UsersRepository,
+    @ApplicationContext private val context: Context
 ) {
 
 
-    suspend fun login(email: String, password: String): String {
-        val deferred = CompletableDeferred<String>()
-        val account = usersRepository.getAccountByEmail(email)
-        if (account != null) {
-            firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        deferred.complete("Done")
-                    } else {
-                        val errorMessage = "Incorrect password"
-                        deferred.complete(errorMessage)
-                    }
+    suspend fun login(
+        email: String,
+        password: String,
+        coroutineScope: CoroutineScope
+    ): String {
+        return suspendCoroutine { continuation ->
+            coroutineScope.launch {
+                val account = usersRepository.getAccountByEmail(email)
+                if (account != null) {
+                    firebaseAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                continuation.resume("Done")
+                            } else {
+                                val errorMessage = context.getString(R.string.incorrect_password)
+                                continuation.resume(errorMessage)
+                            }
+                        }
+                } else {
+                    continuation.resume(context.getString(R.string.account_not_found))
                 }
-        } else {
-            deferred.complete("Account not found")
+            }
         }
-        return deferred.await()
     }
+
 
 
     suspend fun signup(email: String, password: String): String {

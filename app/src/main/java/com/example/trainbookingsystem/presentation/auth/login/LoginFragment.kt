@@ -2,6 +2,7 @@ package com.example.trainbookingsystem.presentation.auth.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,17 +46,13 @@ class LoginFragment : Fragment() {
         lifecycleScope.launch {
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
-            viewModel.login(email, password)
+            viewModel.login(email, password, this)
             viewModel.loginState.collect { state ->
                 when (state) {
 
                     is ScreenState.Loading -> {}
                     is ScreenState.Error -> {
-                        Toast.makeText(
-                            requireContext(),
-                            state.message ?: getString(R.string.user_was_not_found),
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        handleErrors(state.message ?: getString(R.string.user_was_not_found))
                     }
 
                     is ScreenState.Success -> {
@@ -79,6 +76,19 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun handleErrors(error: String) {
+        Log.d("ErrorMsgLogin", error)
+        if (error == getString(R.string.account_not_found)) {
+            binding.editTextEmail.error = getString(R.string.account_not_found)
+            binding.editTextPassword.error = null
+        }
+        else if (error == getString(R.string.incorrect_password)) {
+            binding.editTextPassword.error = getString(R.string.incorrect_password)
+            binding.editTextEmail.error = null
+        }
+
     }
 
     private fun bindViewModelInputs() = with(binding) {
