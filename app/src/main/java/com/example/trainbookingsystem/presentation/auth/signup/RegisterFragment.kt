@@ -46,49 +46,40 @@ class RegisterFragment : Fragment() {
     private fun register() {
         val email = binding.editTextEmail.text.toString()
         val password = binding.editTextPassword.text.toString()
-        val rePassword = binding.editTextConfirmPassword.text.toString()
         val passportNo = binding.editTextPassportNum.text.toString()
         val phoneNumber = binding.editTextPhoneNumber.text.toString()
         val fullName = binding.editTextFullName.text.toString()
-        if (password == rePassword) {
-            val newUser = Account(
-                email = email,
-                passportNum = passportNo,
-                phoneNumber = phoneNumber,
-                role = Constants.USER,
-                fullName = fullName,
-            )
-            lifecycleScope.launch {
-                binding.buttonSignup.visibility = View.GONE
-                viewModel.register(newUser, password)
-                viewModel.registerState.collect {
-                    if (it == "Done") {
-                        startActivity(Intent(requireActivity(), AuthActivity::class.java))
-                        requireActivity().finish()
-                    } else {
-                        binding.buttonSignup.visibility = View.VISIBLE
-                        if (it != "") Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
-                            .show()
-                    }
+        val newUser = Account(
+            email = email,
+            passportNum = passportNo,
+            phoneNumber = phoneNumber,
+            role = Constants.USER,
+            fullName = fullName,
+        )
+        lifecycleScope.launch {
+            binding.buttonSignup.visibility = View.GONE
+            viewModel.register(newUser, password)
+            viewModel.registerState.collect {
+                if (it == "Done") {
+                    startActivity(Intent(requireActivity(), AuthActivity::class.java))
+                    requireActivity().finish()
+                } else {
+                    binding.buttonSignup.visibility = View.VISIBLE
+                    if (it != "") Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
-
-        } else Toast.makeText(
-            requireContext(),
-            getString(R.string.passwords_dont_match),
-            Toast.LENGTH_SHORT
-        ).show()
+        }
     }
 
     private fun allFieldsAreFilled(): Boolean {
         val email = binding.editTextEmail.text.toString()
         val password = binding.editTextPassword.text.toString()
-        val confirmPassword = binding.editTextConfirmPassword.text.toString()
         val passportNo = binding.editTextPassportNum.text.toString()
         val phoneNumber = binding.editTextPhoneNumber.text.toString()
         val fullName = binding.editTextFullName.text.toString()
 
-        return !(email.isEmpty() || password.isEmpty() || passportNo.isEmpty() || phoneNumber.isEmpty() || fullName.isEmpty() || confirmPassword.isEmpty())
+        return !(email.isEmpty() || password.isEmpty() || passportNo.isEmpty() || phoneNumber.isEmpty() || fullName.isEmpty())
 
     }
 

@@ -23,22 +23,21 @@ class TicketsListAdapter(
         private val binding: TicketHolderBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         private var ticket: Ticket? = null
-        fun bind(currentTicket: Ticket) {
-            if (role == Constants.USER) binding.buttonDeleteTicket.visibility = View.GONE
-            binding.textViewDestFrom.text = currentTicket.startDestination
-            binding.textViewDestTo.text = currentTicket.endDestination
-            binding.textViewTimeFrom.text = currentTicket.departureTime
-            binding.textViewTimeTo.text = currentTicket.arrivalTime
-            val trainNo = "Train No ${currentTicket.trainNum}"
-            binding.textViewTrainNum.text = trainNo
-            val price = currentTicket.price.priceListToString()
-            binding.textViewPrice.text = price
+        fun bind(currentTicket: Ticket) = with(binding) {
+            //if (role == Constants.USER) binding.buttonDeleteTicket.visibility = View.GONE
+            textViewDestFrom.text = currentTicket.startDestination
+            textViewDestTo.text = currentTicket.endDestination
+            dateFrom.text = currentTicket.departureTime.substringBefore(' ')
+            timeFrom.text = currentTicket.departureTime.substringAfter(' ') + TIME_TYPE
+            dateTo.text = currentTicket.arrivalTime.substringBefore(' ')
+            timeTo.text = currentTicket.departureTime.substringAfter(' ') + TIME_TYPE
+            trainNum.text = "Train No ${currentTicket.trainNum}"
             ticket = currentTicket
         }
 
         init {
             binding.root.setOnClickListener { listener(ticket!!) }
-            binding.buttonDeleteTicket.setOnClickListener { deleteListener(ticket!!) }
+            //binding.buttonDeleteTicket.setOnClickListener { deleteListener(ticket!!) }
         }
 
     }
@@ -58,6 +57,10 @@ class TicketsListAdapter(
 
     override fun onBindViewHolder(holder: TicketViewHolder, position: Int) {
         holder.bind(tickets[position])
+    }
+
+    companion object {
+        private const val TIME_TYPE = "AM"
     }
 
 }

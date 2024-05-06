@@ -18,8 +18,11 @@
     <string name="login">Войти</string>
     <string name="register">Зарегистрироваться</string>
     <string name="from">Откуда</string>
+    <string name="date">Дата</string>
     <string name="ticket_details">Детали билета</string>
     <string name="to">Куда</string>
+    <string name="settings">Настройки</string>
+    <string name="return_date">Обратно</string>
     <string name="price">Цена</string>
     <string name="train_number">Номер поезда</string>
     <string name="seats_amount">Количество мест</string>
@@ -43,9 +46,10 @@
     <string name="error">Ошибка</string>
     <string name="language">Язык</string>
     <string name="feedback">Обратная связь</string>
+    <string name="edit">Изменить Профиль</string>
     <string name="logout">Выйти</string>
     <string name="profile">Профиль</string>
     <string name="old_password">Старый пароль</string>
     <string name="new_password">Новый пароль</string>
-    <string name="search">поиск</string>
+    <string name="search">Поиск билетов</string>
 </resources>

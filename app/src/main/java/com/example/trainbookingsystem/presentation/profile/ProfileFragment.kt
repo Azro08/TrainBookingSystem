@@ -30,9 +30,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         getUserDetails()
-        binding.buttonEditProfile.setOnClickListener {
-            binding.layoutAccountDetails.visibility = View.VISIBLE
-        }
 
         binding.buttonSave.setOnClickListener {
             if (allFieldsAreFilled()) updateAccount()
@@ -80,10 +77,6 @@ class ProfileFragment : Fragment() {
 
         lifecycleScope.launch {
             viewModel.updateUserFields(updatedFields, newPassword, oldPassword)
-            viewModel.isUpdated.collect {
-                if (it == "Done") binding.layoutAccountDetails.visibility = View.GONE
-                else Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
-            }
         }
 
     }
@@ -99,7 +92,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setUserDetails(account: Account) {
-        binding.textViewEmail.text = account.email
+        binding.editTextEmail.setText(account.email)
         binding.editTextFullName.setText(account.fullName)
         binding.editTextPhoneNumber.setText(account.phoneNumber)
         binding.editTextPassportNum.setText(account.passportNum)

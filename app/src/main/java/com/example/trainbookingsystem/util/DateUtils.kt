@@ -63,7 +63,7 @@ object DateUtils  {
 
 
     private fun formatDateTime(dateTime: Date): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US)
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
         return sdf.format(dateTime)
     }
 

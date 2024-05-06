@@ -1,50 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.history.HistoryFragment">
+    android:orientation="vertical"
+    tools:context=".presentation.history.HistoryFragment"
+    android:background="@color/lightBackground">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/history"
-        android:textSize="22sp"
-        android:textColor="@color/darkBlue"
+        android:layout_margin="10dp"
         android:fontFamily="cursive"
-        android:layout_margin="10dp"/>
+        android:text="@string/history"
+        android:textColor="@color/darkBlue"
+        android:textSize="22sp" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/loadingGig"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/loading_gif"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:background="@drawable/loading_gif" />
 
     <TextView
         android:id="@+id/textViewError"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/darkBlue"
-        android:textSize="26sp"
-        tools:text = "Error"
-        android:textStyle="bold"
-        android:visibility="gone"
         android:layout_gravity="center"
         android:fontFamily="cursive"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:textColor="@color/darkBlue"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        tools:text="Error" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeToRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHistory"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

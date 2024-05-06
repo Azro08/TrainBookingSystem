@@ -1,112 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.buy.BuyTicketFragment"
-    android:padding="10dp">
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@color/lightBackground"
+    tools:context=".presentation.buy.BuyTicketFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:background="@drawable/bg_ticket_item">
+
+        <ImageView
+            android:id="@+id/train_depo"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="12dp"
+            android:src="@drawable/ic_train_depo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="Pensitanian Train"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/train_depo"
+            app:layout_constraintStart_toEndOf="@id/train_depo"
+            app:layout_constraintTop_toTopOf="@id/train_depo" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/train_depo"
+            app:layout_constraintEnd_toEndOf="@id/text_to"
+            app:layout_constraintTop_toTopOf="@id/train_depo" />
+
+        <TextView
+            android:id="@+id/text_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/from"
+            android:textColor="@color/darkGrayText"
+            app:layout_constraintStart_toStartOf="@id/train_depo"
+            app:layout_constraintTop_toBottomOf="@id/train_depo" />
 
         <TextView
             android:id="@+id/textViewDestFrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text = "Minsk"
-            android:textColor="@color/darkBlue"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/text_from"
+            app:layout_constraintTop_toBottomOf="@id/text_from"
+            tools:text="Minsk" />
 
         <TextView
-            android:id="@+id/textViewTimeFrom"
+            android:id="@+id/text_to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text = "2023-10-10 14:20"
-            android:textColor="@color/darkBlue"
-            android:textSize="16sp"
-            android:layout_marginTop="7dp"/>
+            android:layout_marginEnd="12dp"
+            android:text="@string/to"
+            android:textColor="@color/darkGrayText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/text_from" />
 
-        <TextView
-            android:id="@+id/textViewTrainNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "No102"
-            android:textColor="@color/darkBlue"
-            android:textSize="16sp"
-            android:layout_marginTop="7dp"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/right_arrow_icon"
-            android:layout_gravity="start"
-            android:layout_margin="16dp"/>
 
         <TextView
             android:id="@+id/textViewDestTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text = "Vitebsk"
-            android:textColor="@color/darkBlue"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textViewTimeTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "2023-10-10 14:20"
-            android:textColor="@color/darkBlue"
-            android:textSize="16sp"
-            android:layout_marginTop="7dp"/>
-
-        <TextView
-            android:id="@+id/textViewPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "12,4руб"
             android:textColor="@color/black"
             android:textSize="16sp"
-            android:layout_marginTop="7dp"/>
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/text_to"
+            app:layout_constraintTop_toTopOf="@id/textViewDestFrom"
+            tools:text="Vitebsk" />
+
+        <ImageView
+            android:id="@+id/left_hole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/bg_left_ticket"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDestFrom" />
+
+        <ImageView
+            android:id="@+id/right_hole"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_right_ticket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/left_hole" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:src="@drawable/dott_line"
+            app:layout_constraintBottom_toBottomOf="@id/right_hole"
+            app:layout_constraintEnd_toStartOf="@id/right_hole"
+            app:layout_constraintStart_toEndOf="@id/left_hole"
+            app:layout_constraintTop_toTopOf="@id/right_hole" />
+
+
+        <TextView
+            android:id="@+id/timeFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/text_from"
+            app:layout_constraintTop_toBottomOf="@id/left_hole" />
+
+        <TextView
+            android:id="@+id/dateFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/darkGrayText"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/timeFrom"
+            app:layout_constraintStart_toStartOf="@id/timeFrom"
+            app:layout_constraintTop_toBottomOf="@id/timeFrom" />
+
+        <TextView
+            android:id="@+id/timeTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/text_to"
+            app:layout_constraintTop_toTopOf="@id/timeFrom" />
+
+        <ImageView
+            android:id="@+id/ic_slider_min"
+            android:layout_width="40dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_slider_min"
+            app:layout_constraintBottom_toBottomOf="@id/timeFrom"
+            app:layout_constraintEnd_toStartOf="@id/ic_train"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@+id/timeFrom"
+            app:layout_constraintTop_toTopOf="@id/timeFrom" />
+
+        <ImageView
+            android:id="@+id/ic_train"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginHorizontal="10dp"
+            android:src="@drawable/ic_train"
+            app:layout_constraintBottom_toBottomOf="@id/timeFrom"
+            app:layout_constraintEnd_toStartOf="@id/ic_slider_max"
+            app:layout_constraintStart_toEndOf="@+id/ic_slider_min"
+            app:layout_constraintTop_toTopOf="@id/timeFrom" />
+
+        <ImageView
+            android:id="@+id/ic_slider_max"
+            android:layout_width="40dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_slider_max"
+            app:layout_constraintBottom_toBottomOf="@id/timeFrom"
+            app:layout_constraintEnd_toStartOf="@id/timeTo"
+            app:layout_constraintStart_toEndOf="@+id/ic_train"
+            app:layout_constraintTop_toTopOf="@id/timeFrom" />
+
+        <TextView
+            android:id="@+id/dateTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/darkGrayText"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/timeTo"
+            app:layout_constraintTop_toTopOf="@id/dateFrom" />
+
+        <TextView
+            android:id="@+id/trainNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/darkGrayText"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/dateTo"
+            app:layout_constraintStart_toEndOf="@id/dateFrom"
+            app:layout_constraintTop_toBottomOf="@id/ic_train" />
 
         <Button
             android:id="@+id/buttonBuyTicket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
             android:text="@string/buy"
-            android:layout_marginTop="10dp"/>
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/trainNum" />
 
         <LinearLayout
             android:id="@+id/layoutBuyTicket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:visibility="gone"
-            android:orientation="vertical">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonBuyTicket">
 
             <TextView
-                android:text = "@string/pick_a_seat"
                 android:layout_width="wrap_content"
-                android:textSize="14sp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/pick_a_seat"
+                android:textSize="14sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvAvailableSeats"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
 
             <RadioGroup
                 android:id="@+id/radioGroupPaymentType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="10dp">
+                android:layout_marginStart="10dp"
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/radioButtonCash"
@@ -125,9 +258,9 @@
             <!-- credit_card_details_layout.xml -->
 
             <LinearLayout
-                android:background="@color/lightGray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/lightGray"
                 android:orientation="vertical"
                 android:padding="16dp">
 
@@ -137,7 +270,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/card_number"
                     android:inputType="number"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -147,11 +280,11 @@
                     <EditText
                         android:id="@+id/editTextExpirationDate"
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:hint="@string/dd_mm_yy"
                         android:inputType="date"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
 
                     <EditText
                         android:id="@+id/editTextCVV"
@@ -160,7 +293,7 @@
                         android:layout_weight="1"
                         android:hint="@string/cvv"
                         android:inputType="number"
-                        android:maxLines="1"/>
+                        android:maxLines="1" />
                 </LinearLayout>
 
                 <EditText
@@ -169,7 +302,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/cardholder_name"
                     android:inputType="textPersonName"
-                    android:maxLines="1"/>
+                    android:maxLines="1" />
 
             </LinearLayout>
 
@@ -178,23 +311,22 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:visibility="gone"
-                android:background="@drawable/loading_gif"/>
+                android:background="@drawable/loading_gif"
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/buttonSubmitTicket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/submit"
                 android:layout_gravity="center"
-                android:layout_marginTop="5dp"/>
-
+                android:layout_marginTop="5dp"
+                android:text="@string/submit" />
 
 
         </LinearLayout>
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </ScrollView>

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.databinding.FragmentLoginBinding
 import com.example.trainbookingsystem.presentation.MainActivity
@@ -20,10 +21,11 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-    private var _binding : FragmentLoginBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val viewModel: LoginViewModel by viewModels()
-    @Inject lateinit var usersManager: UsersManager
+    @Inject
+    lateinit var usersManager: UsersManager
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,13 +36,7 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        binding.buttonLogin.setOnClickListener {
-            if (allFieldsAreFilled()) login()
-            else Toast.makeText(requireContext(), getString(R.string.fill_upFields), Toast.LENGTH_SHORT)
-                .show()
-        }
-
+        bindViewModelInputs()
     }
 
     private fun login() {
@@ -54,13 +50,30 @@ class LoginFragment : Fragment() {
                     usersManager.saveUer(email)
                     usersManager.saveRole(result)
                     navToMainActivity()
-                }
-                else {
+                } else {
                     binding.buttonLogin.isClickable = true
                 }
             }
         }
     }
+
+    private fun bindViewModelInputs() = with(binding) {
+        buttonLogin.setOnClickListener {
+            if (allFieldsAreFilled()) login()
+            else Toast.makeText(
+                requireContext(),
+                getString(R.string.fill_upFields),
+                Toast.LENGTH_SHORT
+            )
+                .show()
+        }
+
+        buttonSignUp.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+    }
+
 
     private fun navToMainActivity() {
         startActivity(Intent(requireActivity(), MainActivity::class.java))

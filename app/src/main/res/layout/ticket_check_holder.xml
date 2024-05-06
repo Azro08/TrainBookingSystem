@@ -1,93 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_margin="10dp"
-    android:padding="6dp"
-    android:background="@color/lightGray"
-    android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="0.5">
-
-        <TextView
-            android:id="@+id/textViewDestFrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "Minsk"
-            android:textColor="@color/darkBlue"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/textViewTimeFrom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "2023-10-10 14:20"
-            android:textColor="@color/darkBlue"
-            android:textSize="16sp"
-            />
-
-        <TextView
-            android:id="@+id/textViewTrainNum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "No102"
-            android:textColor="@color/darkBlue"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/textViewBoughtAt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "2023/10/10"
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
-
-    </LinearLayout>
+    android:layout_height="200dp"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/bg_ticket_item"
+    android:orientation="horizontal">
 
     <ImageView
+        android:id="@+id/train_depo"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_train_depo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/right_arrow_icon"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"/>
+        android:layout_marginStart="6dp"
+        android:text="Pensitanian Train"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/train_depo"
+        app:layout_constraintStart_toEndOf="@id/train_depo"
+        app:layout_constraintTop_toTopOf="@id/train_depo" />
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="0.5">
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/train_depo"
+        app:layout_constraintEnd_toEndOf="@id/text_to"
+        app:layout_constraintTop_toTopOf="@id/train_depo" />
 
-        <TextView
-            android:id="@+id/textViewDestTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "Vitebsk"
-            android:textColor="@color/darkBlue"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/text_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/from"
+        android:textColor="@color/darkGrayText"
+        app:layout_constraintStart_toStartOf="@id/train_depo"
+        app:layout_constraintTop_toBottomOf="@id/train_depo" />
 
-        <TextView
-            android:id="@+id/textViewTimeTo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "2023-10-10 14:20"
-            android:textColor="@color/darkBlue"
-            android:textSize="16sp" />
+    <TextView
+        android:id="@+id/textViewDestFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/text_from"
+        app:layout_constraintTop_toBottomOf="@id/text_from"
+        tools:text="Minsk" />
 
-        <TextView
-            android:id="@+id/textViewPrice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text = "12,4руб"
-            android:textColor="@color/black"
-            android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/text_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:text="@string/to"
+        android:textColor="@color/darkGrayText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_from" />
 
-    </LinearLayout>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/textViewDestTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/text_to"
+        app:layout_constraintTop_toTopOf="@id/textViewDestFrom"
+        tools:text="Vitebsk" />
+
+    <ImageView
+        android:id="@+id/left_hole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/bg_left_ticket"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDestFrom" />
+
+    <ImageView
+        android:id="@+id/right_hole"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bg_right_ticket"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/left_hole" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:src="@drawable/dott_line"
+        app:layout_constraintBottom_toBottomOf="@id/right_hole"
+        app:layout_constraintEnd_toStartOf="@id/right_hole"
+        app:layout_constraintStart_toEndOf="@id/left_hole"
+        app:layout_constraintTop_toTopOf="@id/right_hole" />
+
+
+    <TextView
+        android:id="@+id/timeFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/text_from"
+        app:layout_constraintTop_toBottomOf="@id/left_hole" />
+
+    <TextView
+        android:id="@+id/dateFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/darkGrayText"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/timeFrom"
+        app:layout_constraintStart_toStartOf="@id/timeFrom"
+        app:layout_constraintTop_toBottomOf="@id/timeFrom" />
+
+    <TextView
+        android:id="@+id/timeTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/text_to"
+        app:layout_constraintTop_toTopOf="@id/timeFrom" />
+
+    <ImageView
+        android:id="@+id/ic_slider_min"
+        android:layout_width="40dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_slider_min"
+        app:layout_constraintBottom_toBottomOf="@id/timeFrom"
+        app:layout_constraintEnd_toStartOf="@id/ic_train"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/timeFrom"
+        app:layout_constraintTop_toTopOf="@id/timeFrom" />
+
+    <ImageView
+        android:id="@+id/ic_train"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_marginHorizontal="10dp"
+        android:src="@drawable/ic_train"
+        app:layout_constraintBottom_toBottomOf="@id/timeFrom"
+        app:layout_constraintEnd_toStartOf="@id/ic_slider_max"
+        app:layout_constraintStart_toEndOf="@+id/ic_slider_min"
+        app:layout_constraintTop_toTopOf="@id/timeFrom" />
+
+    <ImageView
+        android:id="@+id/ic_slider_max"
+        android:layout_width="40dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_slider_max"
+        app:layout_constraintBottom_toBottomOf="@id/timeFrom"
+        app:layout_constraintEnd_toStartOf="@id/timeTo"
+        app:layout_constraintStart_toEndOf="@+id/ic_train"
+        app:layout_constraintTop_toTopOf="@id/timeFrom" />
+
+    <TextView
+        android:id="@+id/dateTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/darkGrayText"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/timeTo"
+        app:layout_constraintTop_toTopOf="@id/dateFrom" />
+
+    <TextView
+        android:id="@+id/trainNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/darkGrayText"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/dateTo"
+        app:layout_constraintStart_toEndOf="@id/dateFrom"
+        app:layout_constraintTop_toBottomOf="@id/ic_train" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -139,10 +139,12 @@ class BuyTicketFragment : Fragment() {
             root.visibility = View.VISIBLE
             textViewDestFrom.text = ticket.startDestination
             textViewDestTo.text = ticket.endDestination
-            textViewTimeFrom.text = ticket.departureTime
-            textViewTimeTo.text = ticket.arrivalTime
-            textViewTrainNum.text = ticket.trainNum.toString()
-            textViewPrice.text = ticket.price.priceListToString()
+            dateFrom.text = ticket.departureTime.substringBefore(' ')
+            dateTo.text = ticket.arrivalTime.substringBefore(' ')
+            timeFrom.text = ticket.departureTime.substringAfter(' ')
+            timeTo.text = ticket.arrivalTime.substringAfter(' ')
+            trainNum.text = ticket.trainNum.toString()
+            price.text = ticket.price.priceListToString()
             seatsRvAdapter = SeatsRvAdapter(ticket.freeSeats) {
                 selectedSeat = it
                 setPrice(it, ticket.price, ticket.freeSeats)

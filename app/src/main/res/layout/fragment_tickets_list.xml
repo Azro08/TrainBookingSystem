@@ -59,12 +59,191 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:layout_height="match_parent"
+        android:background="@color/lightBackground">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/darkBlue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/bg_address"
+                android:layout_width="match_parent"
+                android:layout_height="330dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="50dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_from"
+                        style="@style/LoginTextInputLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="30dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <EditText
+                            android:id="@+id/editTextFromDest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_plane"
+                            android:drawablePadding="10dp"
+                            android:hint="@string/from"
+                            android:inputType="text"
+                            android:padding="20dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="@color/grayText"
+                            android:textCursorDrawable="@color/colorSecondary"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/input_to"
+                        style="@style/LoginTextInputLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        app:boxCornerRadiusBottomEnd="12dp"
+                        app:boxCornerRadiusBottomStart="12dp"
+                        app:boxCornerRadiusTopEnd="12dp"
+                        app:boxCornerRadiusTopStart="12dp"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false"
+                        app:layout_constraintEnd_toEndOf="@+id/input_from"
+                        app:layout_constraintStart_toStartOf="@id/input_from"
+                        app:layout_constraintTop_toBottomOf="@id/input_from">
+
+                        <EditText
+                            android:id="@+id/editTextToDest"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_map"
+                            android:drawablePadding="10dp"
+                            android:hint="@string/to"
+                            android:inputType="text"
+                            android:padding="20dp"
+                            android:textColor="@color/colorPrimary"
+                            android:textColorHint="@color/grayText"
+                            android:textCursorDrawable="@color/colorSecondary"
+                            android:textSize="16sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:id="@+id/bg_date"
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="14dp"
+                        android:background="@drawable/bg_view_date"
+                        app:layout_constraintEnd_toEndOf="@id/input_to"
+                        app:layout_constraintStart_toStartOf="@id/input_to"
+                        app:layout_constraintTop_toBottomOf="@id/input_to" />
+
+
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/date"
+                        android:textColor="@color/darkGrayText"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="@id/bg_date"
+                        app:layout_constraintTop_toTopOf="@id/bg_date" />
+
+                    <ImageButton
+                        android:id="@+id/imageButtonDateFrom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/calendar_icon"
+                        android:contentDescription="@string/from"
+                        app:layout_constraintStart_toStartOf="@id/date"
+                        app:layout_constraintTop_toBottomOf="@id/date" />
+
+                    <TextView
+                        android:id="@+id/textViewDateFrom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        app:layout_constraintBottom_toBottomOf="@id/imageButtonDateFrom"
+                        app:layout_constraintStart_toEndOf="@+id/imageButtonDateFrom"
+                        app:layout_constraintTop_toTopOf="@+id/imageButtonDateFrom"
+                        tools:text="2023-10-11" />
+
+                    <TextView
+                        android:id="@+id/return_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="18dp"
+                        android:text="@string/return_date"
+                        android:textColor="@color/darkGrayText"
+                        android:textSize="12sp"
+                        app:layout_constraintStart_toStartOf="@+id/imageButtonDateTo"
+                        app:layout_constraintTop_toTopOf="@id/bg_date" />
+
+
+                    <ImageButton
+                        android:id="@+id/imageButtonDateTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/calendar_icon"
+                        android:importantForAccessibility="no"
+                        app:layout_constraintEnd_toStartOf="@id/textViewDateTo"
+                        app:layout_constraintTop_toTopOf="@+id/imageButtonDateFrom" />
+
+                    <TextView
+                        android:id="@+id/textViewDateTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="18dp"
+                        app:layout_constraintEnd_toEndOf="@id/bg_date"
+                        app:layout_constraintTop_toTopOf="@+id/textViewDateFrom"
+                        tools:text="2023-10-11" />
+
+                    <Button
+                        android:id="@+id/buttonSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="16dp"
+                        android:text="@string/search"
+                        app:layout_constraintEnd_toEndOf="@id/input_to"
+                        app:layout_constraintStart_toStartOf="@id/input_to"
+                        app:layout_constraintTop_toBottomOf="@id/bg_date" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/loadingGig"
@@ -91,116 +270,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/ll"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutActionBar">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/from" />
-
-                <ImageButton
-                    android:id="@+id/imageButtonDateFrom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:background="@drawable/calendar_icon"
-                    android:contentDescription="@string/from" />
-
-                <TextView
-                    android:id="@+id/textViewDateFrom"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="2023-10-11" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/to" />
-
-
-                <ImageButton
-                    android:id="@+id/imageButtonDateTo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3dp"
-                    android:background="@drawable/calendar_icon"
-                    android:importantForAccessibility="no" />
-
-                <TextView
-                    android:id="@+id/textViewDateTo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="2023-10-11" />
-            </LinearLayout>
-
-            <EditText
-                android:id="@+id/editTextFromDest"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:hint="@string/from"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="@color/darkBlue"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/right_arrow_icon"
-                android:importantForAccessibility="no"
-                app:layout_constraintStart_toEndOf="@+id/editTextFromDest"
-                app:layout_constraintTop_toBottomOf="@+id/ll" />
-
-            <EditText
-                android:id="@+id/editTextToDest"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="44dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="16dp"
-                android:hint="@string/to"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:textColor="@color/darkBlue"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toBottomOf="@+id/ll" />
-
-            <Button
-                android:id="@+id/buttonSearch"
+            <TextView
+                android:id="@+id/text_ticket_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/search"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageView2" />
+                android:layout_marginTop="20dp"
+                android:text="Ticket List"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@+id/bg_address"
+                app:layout_constraintTop_toBottomOf="@id/bg_address" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTickets"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonSearch"
+                app:layout_constraintTop_toBottomOf="@+id/text_ticket_list"
                 app:layout_constraintVertical_bias="0.0" />
 
 

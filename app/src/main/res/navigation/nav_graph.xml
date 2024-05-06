@@ -35,6 +35,9 @@
         <action
             android:id="@+id/nav_menu_profile"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_languageFragment"
+            app:destination="@id/languageFragment" />
     </fragment>
     <fragment
         android:id="@+id/buyTicketFragment"
@@ -46,4 +49,9 @@
         android:name="com.example.trainbookingsystem.presentation.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.example.trainbookingsystem.presentation.language.LanguageFragment"
+        android:label="fragment_language"
+        tools:layout="@layout/fragment_language" />
 </navigation>

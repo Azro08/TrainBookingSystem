@@ -33,15 +33,13 @@ class MenuFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.textViewEmail.text = firebaseAuth.currentUser?.email
-        binding.textViewLanguage.setOnClickListener {
-            val languageFragment = LanguageFragment()
-            languageFragment.show(parentFragmentManager, "languageFragment")
+        binding.card2.setOnClickListener {
+            findNavController().navigate(R.id.action_menuFragment_to_languageFragment)
         }
-        binding.accountHeader.setOnClickListener {
+        binding.card1.setOnClickListener {
             findNavController().navigate(R.id.nav_menu_profile)
         }
-        binding.textViewLogout.setOnClickListener {
+        binding.card3.setOnClickListener {
             logout()
         }
 
