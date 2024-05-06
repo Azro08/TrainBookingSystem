@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -41,6 +42,15 @@ class TicketsListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         getAllTickets()
+
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            Constants.getMainCities(requireContext()) // Replace this with your list of suggestions
+        )
+        binding.editTextFromDest.setAdapter(adapter)
+        binding.editTextToDest.setAdapter(adapter)
+
         binding.buttonAddTicket.setOnClickListener {
             findNavController().navigate(R.id.nav_tickets_list_add_ticket)
         }

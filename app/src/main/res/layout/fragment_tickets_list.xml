@@ -107,7 +107,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/editTextFromDest"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
                         app:layout_constraintStart_toStartOf="@id/input_from"
                         app:layout_constraintTop_toBottomOf="@id/input_from">
 
-                        <EditText
+                        <AutoCompleteTextView
                             android:id="@+id/editTextToDest"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

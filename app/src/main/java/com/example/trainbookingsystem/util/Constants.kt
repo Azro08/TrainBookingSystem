@@ -6,6 +6,7 @@ import android.content.Context
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.TimePicker
+import com.example.trainbookingsystem.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -36,6 +37,19 @@ object Constants {
         }
 
         return randomString.toString()
+    }
+
+    fun getMainCities(context: Context) : List<String>{
+        return listOf(
+            context.getString(R.string.minsk),
+            context.getString(R.string.grodno),
+            context.getString(R.string.vitebsk),
+            context.getString(R.string.gomel),
+            context.getString(R.string.mogilev),
+            context.getString(R.string.brest),
+            context.getString(R.string.moscow),
+            context.getString(R.string.saint_petersburg),
+        )
     }
 
     fun getCurrentTimestamp(): Long {
