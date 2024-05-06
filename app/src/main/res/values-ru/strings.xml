@@ -52,20 +52,4 @@
     <string name="old_password">Старый пароль</string>
     <string name="new_password">Новый пароль</string>
     <string name="search">Поиск билетов</string>
-
-    <string name="refresh">refresh</string>
-    <string name="add_ticket">Add ticket</string>
-    <string name="user_was_not_found">User was not found</string>
-    <string name="login_successful">Login Successful</string>
-    <string name="incorrect_password">Incorrect password</string>
-    <string name="account_not_found">Account not found</string>
-    <string name="minsk">Минск</string>
-    <string name="grodno">Гродно</string>
-    <string name="vitebsk">Витебск</string>
-    <string name="gomel">Гомел</string>
-    <string name="mogilev">Могилев</string>
-    <string name="brest">Брест</string>
-    <string name="moscow">Москва</string>
-    <string name="saint_petersburg">Санкт-Петербург</string>
-
 </resources>

@@ -82,6 +82,18 @@ class TicketsRepository @Inject constructor(
                 Log.d("FilteredTicket", filteredList.toString())
             }
 
+            if (filteredList.isEmpty()){
+                if (startDestination.isNotEmpty() && endDestination.isNotEmpty()) {
+                    val connectingFlights = ticketsList.filter { it.startDestination == startDestination && it.endDestination != endDestination }
+                    connectingFlights.forEach { connectingFlight ->
+                        val intermediateDestinations = ticketsList.filter { it.startDestination == connectingFlight.endDestination && it.endDestination == endDestination }
+                        if (intermediateDestinations.isNotEmpty()) {
+                            filteredList = filteredList + connectingFlight + intermediateDestinations
+                        }
+                    }
+                }
+            }
+
             filteredList
         } catch (e: Exception) {
             Log.d("FilteredTicketError", e.message.toString())

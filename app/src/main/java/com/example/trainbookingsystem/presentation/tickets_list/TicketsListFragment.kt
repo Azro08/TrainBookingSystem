@@ -46,7 +46,7 @@ class TicketsListFragment : Fragment() {
         val adapter = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_dropdown_item_1line,
-            Constants.getMainCities(requireContext()) // Replace this with your list of suggestions
+            Constants.getMainCities() // Replace this with your list of suggestions
         )
         binding.editTextFromDest.setAdapter(adapter)
         binding.editTextToDest.setAdapter(adapter)
