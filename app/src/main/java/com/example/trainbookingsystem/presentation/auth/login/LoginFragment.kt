@@ -14,6 +14,7 @@ import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.databinding.FragmentLoginBinding
 import com.example.trainbookingsystem.presentation.MainActivity
 import com.example.trainbookingsystem.util.Constants
+import com.example.trainbookingsystem.util.ScreenState
 import com.example.trainbookingsystem.util.UsersManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -24,6 +25,7 @@ class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val viewModel: LoginViewModel by viewModels()
+
     @Inject
     lateinit var usersManager: UsersManager
     override fun onCreateView(
@@ -40,18 +42,40 @@ class LoginFragment : Fragment() {
     }
 
     private fun login() {
-        binding.buttonLogin.isClickable = false
         lifecycleScope.launch {
             val email = binding.editTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
             viewModel.login(email, password)
-            viewModel.loginState.collect { result ->
-                if (result == Constants.ADMIN || result == Constants.USER) {
-                    usersManager.saveUer(email)
-                    usersManager.saveRole(result)
-                    navToMainActivity()
-                } else {
-                    binding.buttonLogin.isClickable = true
+            viewModel.loginState.collect { state ->
+                when (state) {
+
+                    is ScreenState.Loading -> {}
+                    is ScreenState.Error -> {
+                        Toast.makeText(
+                            requireContext(),
+                            state.message ?: getString(R.string.user_was_not_found),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    is ScreenState.Success -> {
+                        if (state.data == Constants.ADMIN || state.data == Constants.USER) {
+                            usersManager.saveUer(email)
+                            usersManager.saveRole(state.data)
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.login_successful), Toast.LENGTH_SHORT
+                            ).show()
+                            navToMainActivity()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                getString(R.string.user_was_not_found), Toast.LENGTH_SHORT
+                            ).show()
+                            binding.buttonLogin.isClickable = true
+                        }
+                    }
+
                 }
             }
         }

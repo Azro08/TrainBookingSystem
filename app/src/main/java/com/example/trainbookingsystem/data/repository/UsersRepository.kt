@@ -1,5 +1,6 @@
 package com.example.trainbookingsystem.data.repository
 
+import android.util.Log
 import com.example.trainbookingsystem.data.model.Account
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -54,5 +55,14 @@ class UsersRepository @Inject constructor(
 
         return result.getOrThrow()
     }
+
+    suspend fun getAccountByEmail(email: String): Account? {
+        val query = accountsCollection.whereEqualTo("email", email).limit(1)
+        val querySnapshot = query.get().await()
+        val account = querySnapshot.documents.firstOrNull()?.toObject(Account::class.java)
+        Log.d("AccountRepository", "getAccountByEmail: $account")
+        return account
+    }
+
 
 }

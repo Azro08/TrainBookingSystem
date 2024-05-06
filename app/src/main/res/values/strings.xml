@@ -54,5 +54,7 @@
     <string name="search">Search Ticket</string>
     <string name="refresh">refresh</string>
     <string name="add_ticket">Add ticket</string>
+    <string name="user_was_not_found">User was not found</string>
+    <string name="login_successful">Login Successful</string>
 
 </resources>

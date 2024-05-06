@@ -11,25 +11,26 @@ import javax.inject.Inject
 class AuthRepository @Inject constructor(
     private val firebaseAuth: FirebaseAuth,
     private val firestore: FirebaseFirestore,
+    private val usersRepository: UsersRepository
 ) {
 
 
     suspend fun login(email: String, password: String): String {
         val deferred = CompletableDeferred<String>()
-        try {
+        val account = usersRepository.getAccountByEmail(email)
+        if (account != null) {
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         deferred.complete("Done")
                     } else {
-                        val errorMessage = task.exception?.message ?: "Unknown error"
+                        val errorMessage = "Incorrect password"
                         deferred.complete(errorMessage)
                     }
                 }
-        } catch (e: Exception) {
-            deferred.complete(e.message ?: "Unknown error")
+        } else {
+            deferred.complete("Account not found")
         }
-
         return deferred.await()
     }
 
