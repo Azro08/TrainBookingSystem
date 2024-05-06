@@ -21,7 +21,7 @@ class HistoryRvAdapter(private val ticketList: List<TicketCheck>) :
             dateTo.text = ticketCheck.ticket.arrivalTime.substringBefore(' ')
             timeTo.text = ticketCheck.ticket.departureTime.substringAfter(' ') + TIME_TYPE
             trainNum.text = "Train No ${ticketCheck.ticket.trainNum}"
-            price.text = "${ticketCheck.price} руб"
+            price.text = "${ticketCheck.price} руб \n${(ticketCheck.paymentType)}"
             ticket = ticketCheck
         }
     }
