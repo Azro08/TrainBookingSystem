@@ -82,4 +82,9 @@
     <string name="create_account">Создать аккаунт</string>
     <string name="start_travelling_create_new_account">Начните путешествовать, создайте новый аккаунт</string>
     <string name="ticket_list">Список билетов</string>
+    <string name="minimum_price">Минимальная цена</string>
+    <string name="maximum_price">Максимальная цена</string>
+    <string name="minimum_duration">Минимальная продолжительность</string>
+    <string name="maximum_duration">Максимальная продолжительность</string>
+
 </resources>

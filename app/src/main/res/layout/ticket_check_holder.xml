@@ -15,7 +15,8 @@
         android:layout_margin="12dp"
         android:src="@drawable/ic_train_depo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:layout_width="wrap_content"
