@@ -14,7 +14,6 @@
     <string name="tickets">Tickets</string>
     <string name="orders">Orders</string>
     <string name="menu">Menu</string>
-
     <string name="login">Sign In</string>
     <string name="register">Register</string>
     <string name="from">From</string>
@@ -73,5 +72,16 @@
     <string name="delete_ticket">Delete Ticket</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+    <string name="username">Username</string>
+    <string name="create_your_username">Create your username</string>
+    <string name="enter_your_passport_number">Enter your passport number</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="enter_your_old_password">Enter your old password</string>
+    <string name="enter_your_new_password">Enter your new password</string>
+    <string name="create_account">Create Account</string>
+    <string name="start_travelling_create_new_account">Start travelling, create new account</string>
+    <string name="ticket_list">Ticket List</string>
 
 </resources>

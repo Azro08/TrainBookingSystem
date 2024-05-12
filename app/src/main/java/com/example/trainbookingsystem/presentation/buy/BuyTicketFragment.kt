@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.trainbookingsystem.data.model.CardDetails
 import com.example.trainbookingsystem.data.model.Ticket
 import com.example.trainbookingsystem.data.model.TicketCheck
 import com.example.trainbookingsystem.data.model.priceListToString
@@ -31,6 +30,7 @@ class BuyTicketFragment : Fragment() {
     private var seatsRvAdapter: SeatsRvAdapter? = null
     private var selectedSeat = 0
     private var price = 0.0
+
     @Inject
     lateinit var firebaseAuth: FirebaseAuth
     override fun onCreateView(
@@ -51,7 +51,7 @@ class BuyTicketFragment : Fragment() {
         }
 
         binding.buttonSubmitTicket.setOnClickListener {
-            if (allFieldsAreFilled()) {
+            if (selectedSeat != 0) {
                 binding.buttonSubmitTicket.visibility = View.GONE
                 binding.buttonLoadingGif.visibility = View.VISIBLE
                 submitTicket()
@@ -61,7 +61,6 @@ class BuyTicketFragment : Fragment() {
     }
 
     private fun submitTicket() {
-        val cardDetails = getCardDetails()
         val paymentMethod = getPaymentMethod()
         val userId = firebaseAuth.currentUser?.uid ?: ""
         val date = DateUtils.getCurrentDateString()
@@ -74,7 +73,6 @@ class BuyTicketFragment : Fragment() {
             date,
             price,
             paymentMethod,
-            cardDetails,
             seatNumber = selectedSeat
         )
 
@@ -89,28 +87,6 @@ class BuyTicketFragment : Fragment() {
                 }
             }
         }
-
-    }
-
-    private fun getCardDetails(): CardDetails {
-        return if (getPaymentMethod() == "Cash") CardDetails()
-        else {
-            val cardNum = binding.editTextCardNumber.text.toString().toInt()
-            val cardExp = binding.editTextExpirationDate.text.toString()
-            val cardCvv = binding.editTextCVV.text.toString().toInt()
-            val cardHolder = binding.editTextCardHolderName.text.toString()
-            CardDetails(cardNum, cardExp, cardCvv, cardHolder)
-        }
-    }
-
-    private fun allFieldsAreFilled(): Boolean {
-        val paymentMethod = getPaymentMethod()
-        val cardNume = binding.editTextCardNumber.text.toString()
-        val cardExp = binding.editTextExpirationDate.text.toString()
-        val cardCvv = binding.editTextCVV.text.toString()
-        val cardHolder = binding.editTextCardHolderName.text.toString()
-
-        return !((paymentMethod == "Credit Card" && (cardNume.isEmpty() || cardCvv.isEmpty() || cardExp.isEmpty() || cardHolder.isEmpty())) || selectedSeat == 0)
 
     }
 

@@ -28,7 +28,8 @@
         android:layout_marginTop="4dp"
         android:background="@drawable/train_logo"
         app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <EditText
         android:id="@+id/editTextFromDest"
@@ -40,7 +41,8 @@
         android:inputType="text"
         android:textColor="@color/darkBlue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:importantForAutofill="no" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -50,7 +52,8 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/right_arrow_icon"
         app:layout_constraintStart_toEndOf="@+id/editTextFromDest"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        android:importantForAccessibility="no" />
 
     <EditText
         android:id="@+id/editTextToDest"
@@ -65,7 +68,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:importantForAutofill="no" />
 
     <LinearLayout
         android:id="@+id/ll"
@@ -87,7 +91,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:background="@drawable/calendar_icon" />
+            android:background="@drawable/calendar_icon"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:id="@+id/textViewDateFrom"

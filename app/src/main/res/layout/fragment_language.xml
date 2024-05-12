@@ -14,7 +14,8 @@
         android:layout_marginStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/line"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/title_language"
@@ -60,7 +61,8 @@
         app:layout_constraintBottom_toBottomOf="@id/lan_en"
         app:layout_constraintEnd_toEndOf="@+id/lan_en"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="@id/lan_en" />
+        app:layout_constraintTop_toTopOf="@id/lan_en"
+        android:importantForAccessibility="no" />
 
     <ImageView
         android:id="@+id/ic_en"
@@ -70,14 +72,15 @@
         android:src="@drawable/flag_uk"
         app:layout_constraintBottom_toBottomOf="@id/lan_en"
         app:layout_constraintStart_toStartOf="@id/lan_en"
-        app:layout_constraintTop_toTopOf="@id/lan_en" />
+        app:layout_constraintTop_toTopOf="@id/lan_en"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/text_en"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:text="English"
+        android:text="@string/english"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -106,7 +109,8 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@id/lan_rus"
         app:layout_constraintEnd_toEndOf="@+id/lan_rus"
-        app:layout_constraintTop_toTopOf="@id/lan_rus" />
+        app:layout_constraintTop_toTopOf="@id/lan_rus"
+        android:importantForAccessibility="no" />
 
     <ImageView
         android:id="@+id/ic_rus"
@@ -116,14 +120,15 @@
         android:src="@drawable/flag_rus"
         app:layout_constraintBottom_toBottomOf="@id/lan_rus"
         app:layout_constraintStart_toStartOf="@id/lan_rus"
-        app:layout_constraintTop_toTopOf="@id/lan_rus" />
+        app:layout_constraintTop_toTopOf="@id/lan_rus"
+        android:importantForAccessibility="no" />
 
     <TextView
         android:id="@+id/text_rus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:text="Russian"
+        android:text="@string/russian"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"

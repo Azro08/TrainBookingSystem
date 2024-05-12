@@ -21,13 +21,14 @@
             android:layout_margin="12dp"
             android:src="@drawable/ic_train_depo"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
-            android:text="Pensitanian Train"
+            android:text="@string/pensitanian_train"
             android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/train_depo"
@@ -95,7 +96,8 @@
             android:layout_marginTop="8dp"
             android:src="@drawable/bg_left_ticket"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewDestFrom" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewDestFrom"
+            android:importantForAccessibility="no" />
 
         <ImageView
             android:id="@+id/right_hole"
@@ -103,7 +105,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/bg_right_ticket"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/left_hole" />
+            app:layout_constraintTop_toTopOf="@+id/left_hole"
+            android:importantForAccessibility="no" />
 
         <ImageView
             android:layout_width="0dp"
@@ -112,7 +115,8 @@
             app:layout_constraintBottom_toBottomOf="@id/right_hole"
             app:layout_constraintEnd_toStartOf="@id/right_hole"
             app:layout_constraintStart_toEndOf="@id/left_hole"
-            app:layout_constraintTop_toTopOf="@id/right_hole" />
+            app:layout_constraintTop_toTopOf="@id/right_hole"
+            android:importantForAccessibility="no" />
 
 
         <TextView
@@ -157,7 +161,8 @@
             app:layout_constraintEnd_toStartOf="@id/ic_train"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toEndOf="@+id/timeFrom"
-            app:layout_constraintTop_toTopOf="@id/timeFrom" />
+            app:layout_constraintTop_toTopOf="@id/timeFrom"
+            android:importantForAccessibility="no" />
 
         <ImageView
             android:id="@+id/ic_train"
@@ -168,7 +173,8 @@
             app:layout_constraintBottom_toBottomOf="@id/timeFrom"
             app:layout_constraintEnd_toStartOf="@id/ic_slider_max"
             app:layout_constraintStart_toEndOf="@+id/ic_slider_min"
-            app:layout_constraintTop_toTopOf="@id/timeFrom" />
+            app:layout_constraintTop_toTopOf="@id/timeFrom"
+            android:importantForAccessibility="no" />
 
         <ImageView
             android:id="@+id/ic_slider_max"
@@ -178,7 +184,8 @@
             app:layout_constraintBottom_toBottomOf="@id/timeFrom"
             app:layout_constraintEnd_toStartOf="@id/timeTo"
             app:layout_constraintStart_toEndOf="@+id/ic_train"
-            app:layout_constraintTop_toTopOf="@id/timeFrom" />
+            app:layout_constraintTop_toTopOf="@id/timeFrom"
+            android:importantForAccessibility="no" />
 
         <TextView
             android:id="@+id/dateTo"
@@ -219,7 +226,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="gone"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonBuyTicket">
 
@@ -254,57 +261,6 @@
                     android:text="@string/credit_card" />
 
             </RadioGroup>
-
-            <!-- credit_card_details_layout.xml -->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/lightGray"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <EditText
-                    android:id="@+id/editTextCardNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/card_number"
-                    android:inputType="number"
-                    android:maxLines="1" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/editTextExpirationDate"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/dd_mm_yy"
-                        android:inputType="date"
-                        android:maxLines="1" />
-
-                    <EditText
-                        android:id="@+id/editTextCVV"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:hint="@string/cvv"
-                        android:inputType="number"
-                        android:maxLines="1" />
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/editTextCardHolderName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/cardholder_name"
-                    android:inputType="textPersonName"
-                    android:maxLines="1" />
-
-            </LinearLayout>
 
             <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/buttonLoadingGif"

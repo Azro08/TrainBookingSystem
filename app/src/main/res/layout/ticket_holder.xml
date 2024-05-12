@@ -87,6 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/bg_left_ticket"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewDestFrom" />
@@ -95,6 +96,7 @@
         android:id="@+id/right_hole"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
         android:src="@drawable/bg_right_ticket"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/left_hole" />
@@ -102,6 +104,7 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="2dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/dott_line"
         app:layout_constraintBottom_toBottomOf="@id/right_hole"
         app:layout_constraintEnd_toStartOf="@id/right_hole"
@@ -114,12 +117,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        tools:text="08:15 AM"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/text_from"
-        app:layout_constraintTop_toBottomOf="@id/left_hole" />
+        app:layout_constraintTop_toBottomOf="@id/left_hole"
+        tools:text="08:15 AM" />
 
     <TextView
         android:id="@+id/dateFrom"
@@ -127,55 +130,58 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="20dp"
-        tools:text="01.09.2024"
         android:textColor="@color/darkGrayText"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/timeFrom"
         app:layout_constraintStart_toStartOf="@id/timeFrom"
-        app:layout_constraintTop_toBottomOf="@id/timeFrom" />
+        app:layout_constraintTop_toBottomOf="@id/timeFrom"
+        tools:text="01.09.2024" />
 
     <TextView
         android:id="@+id/timeTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="20:15 AM"
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/text_to"
-        app:layout_constraintTop_toTopOf="@id/timeFrom" />
+        app:layout_constraintTop_toTopOf="@id/timeFrom"
+        tools:text="20:15 AM" />
 
     <ImageView
         android:id="@+id/ic_slider_min"
         android:layout_width="40dp"
         android:layout_height="16dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/ic_slider_min"
-        app:layout_constraintStart_toEndOf="@+id/timeFrom"
-        app:layout_constraintTop_toTopOf="@id/timeFrom"
+        app:layout_constraintBottom_toBottomOf="@id/timeFrom"
         app:layout_constraintEnd_toStartOf="@id/ic_train"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintBottom_toBottomOf="@id/timeFrom"/>
+        app:layout_constraintStart_toEndOf="@+id/timeFrom"
+        app:layout_constraintTop_toTopOf="@id/timeFrom" />
 
     <ImageView
         android:id="@+id/ic_train"
         android:layout_width="34dp"
         android:layout_height="34dp"
-        android:src="@drawable/ic_train"
-        app:layout_constraintStart_toEndOf="@+id/ic_slider_min"
-        app:layout_constraintTop_toTopOf="@id/timeFrom"
         android:layout_marginHorizontal="10dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_train"
+        app:layout_constraintBottom_toBottomOf="@id/timeFrom"
         app:layout_constraintEnd_toStartOf="@id/ic_slider_max"
-        app:layout_constraintBottom_toBottomOf="@id/timeFrom"/>
+        app:layout_constraintStart_toEndOf="@+id/ic_slider_min"
+        app:layout_constraintTop_toTopOf="@id/timeFrom" />
 
     <ImageView
         android:id="@+id/ic_slider_max"
         android:layout_width="40dp"
         android:layout_height="16dp"
+        android:importantForAccessibility="no"
         android:src="@drawable/ic_slider_max"
-        app:layout_constraintStart_toEndOf="@+id/ic_train"
+        app:layout_constraintBottom_toBottomOf="@id/timeFrom"
         app:layout_constraintEnd_toStartOf="@id/timeTo"
-        app:layout_constraintTop_toTopOf="@id/timeFrom"
-        app:layout_constraintBottom_toBottomOf="@id/timeFrom"/>
+        app:layout_constraintStart_toEndOf="@+id/ic_train"
+        app:layout_constraintTop_toTopOf="@id/timeFrom" />
 
     <TextView
         android:id="@+id/dateTo"
@@ -183,22 +189,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="20dp"
-        tools:text="02.09.2024"
         android:textColor="@color/darkGrayText"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/timeTo"
-        app:layout_constraintTop_toTopOf="@id/dateFrom" />
+        app:layout_constraintTop_toTopOf="@id/dateFrom"
+        tools:text="02.09.2024" />
 
     <TextView
         android:id="@+id/trainNum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/ic_train"
-        app:layout_constraintStart_toEndOf="@id/dateFrom"
-        app:layout_constraintEnd_toStartOf="@+id/dateTo"
-        android:textSize="10sp"
-        android:textColor="@color/darkGrayText"
         android:layout_marginTop="4dp"
-        />
+        android:textColor="@color/darkGrayText"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/dateTo"
+        app:layout_constraintStart_toEndOf="@id/dateFrom"
+        app:layout_constraintTop_toBottomOf="@id/ic_train" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
