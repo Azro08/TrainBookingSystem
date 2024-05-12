@@ -135,13 +135,16 @@ class TicketsListFragment : Fragment() {
 
     private fun display(ticketList: List<Ticket>) {
         ticketsRvAdapter = TicketsListAdapter(
-            usersManager.getRole(),
-            ticketList,
+            requireContext(),
+            ticketList.toMutableList(),
             { navToBuyTicket(it.id) },
             { deleteTicket(it.id) })
         binding.rvTickets.setHasFixedSize(true)
         binding.rvTickets.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTickets.adapter = ticketsRvAdapter
+
+        if (usersManager.getRole() == Constants.ADMIN) ticketsRvAdapter!!.addSwipeToDelete(binding.rvTickets)
+
     }
 
     private fun navToBuyTicket(ticketId: String) {

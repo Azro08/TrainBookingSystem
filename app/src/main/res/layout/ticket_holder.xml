@@ -29,6 +29,16 @@
         app:layout_constraintTop_toTopOf="@id/train_depo" />
 
     <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/train_depo"
+        app:layout_constraintEnd_toEndOf="@id/text_to"
+        app:layout_constraintTop_toTopOf="@id/train_depo" />
+
+    <TextView
         android:id="@+id/text_from"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
