@@ -49,7 +49,6 @@ class AuthRepository @Inject constructor(
     }
 
 
-
     suspend fun signup(email: String, password: String): String {
         val deferred = CompletableDeferred<String>()
 
@@ -101,7 +100,7 @@ class AuthRepository @Inject constructor(
             userDocRef.set(account).await()
             "Done"
         } catch (e: Exception) {
-            e.message.toString()
+            e.localizedMessage!!.toString()
         }
     }
 

@@ -1,6 +1,7 @@
 package com.example.trainbookingsystem.presentation.auth.reset_password
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,13 +29,14 @@ class ResetPasswordFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val email = binding.editTextResetEmail.text.toString()
         binding.buttonResetPassword.setOnClickListener {
+            val email = binding.editTextResetEmail.text.toString()
             if (email.isNotEmpty()) resetPassword(email)
         }
     }
 
     private fun resetPassword(email: String) {
+        Log.d("ResetPassword", "resetPassword: $email")
         firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 Toast.makeText(

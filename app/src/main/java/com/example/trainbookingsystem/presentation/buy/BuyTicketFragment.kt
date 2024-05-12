@@ -64,7 +64,7 @@ class BuyTicketFragment : Fragment() {
         val cardDetails = getCardDetails()
         val paymentMethod = getPaymentMethod()
         val userId = firebaseAuth.currentUser?.uid ?: ""
-        val date = DateUtils.getCurrentDate()
+        val date = DateUtils.getCurrentDateString()
         val id = Constants.generateRandomId()
         if (ticket == null) ticket = Ticket()
         val ticketCheck = TicketCheck(

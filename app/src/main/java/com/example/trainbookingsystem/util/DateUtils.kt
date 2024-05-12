@@ -7,9 +7,11 @@ import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.TimePicker
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 object DateUtils  {
 
@@ -63,13 +65,28 @@ object DateUtils  {
 
 
     private fun formatDateTime(dateTime: Date): String {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         return sdf.format(dateTime)
     }
 
-    fun getCurrentDate(): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    fun parseDateTime(dateTimeString: String): Date {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US)
+        return dateFormat.parse(dateTimeString)!!
+    }
+
+    fun calculateTimeDifferenceHours(startTime: Date, endTime: Date): Long {
+        val differenceMillis = endTime.time - startTime.time
+        return TimeUnit.MILLISECONDS.toHours(differenceMillis)
+    }
+
+
+    fun getCurrentDateString(): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
         return dateFormat.format(Date())
+    }
+
+    fun getCurrentDate(): Date {
+        return SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault()).parse(LocalDateTime.now().toString())!!
     }
 
 }

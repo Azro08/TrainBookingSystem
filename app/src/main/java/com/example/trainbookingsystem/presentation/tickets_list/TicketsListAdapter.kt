@@ -1,13 +1,10 @@
 package com.example.trainbookingsystem.presentation.tickets_list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trainbookingsystem.data.model.Ticket
-import com.example.trainbookingsystem.data.model.priceListToString
 import com.example.trainbookingsystem.databinding.TicketHolderBinding
-import com.example.trainbookingsystem.util.Constants
 
 class TicketsListAdapter(
     private val role: String,
@@ -28,9 +25,9 @@ class TicketsListAdapter(
             textViewDestFrom.text = currentTicket.startDestination
             textViewDestTo.text = currentTicket.endDestination
             dateFrom.text = currentTicket.departureTime.substringBefore(' ')
-            timeFrom.text = currentTicket.departureTime.substringAfter(' ') + TIME_TYPE
+            timeFrom.text = currentTicket.arrivalTime.substringAfter(' ')
             dateTo.text = currentTicket.arrivalTime.substringBefore(' ')
-            timeTo.text = currentTicket.departureTime.substringAfter(' ') + TIME_TYPE
+            timeTo.text = currentTicket.departureTime.substringAfter(' ')
             trainNum.text = "Train No ${currentTicket.trainNum}"
             ticket = currentTicket
         }
@@ -59,8 +56,5 @@ class TicketsListAdapter(
         holder.bind(tickets[position])
     }
 
-    companion object {
-        private const val TIME_TYPE = "AM"
-    }
 
 }

@@ -67,5 +67,6 @@
     <string name="visit_our_terms_and_conditions_n_and_privacy_policy">Visit our Terms and Conditions\n and Privacy Policy</string>
     <string name="reset_password">Reset password</string>
     <string name="reset_link_was_sent_to_your_email">Reset link was sent to your email</string>
+    <string name="pensitanian_train">Pensitanian Train</string>
 
 </resources>

@@ -15,14 +15,18 @@ import com.example.trainbookingsystem.databinding.FragmentRegisterBinding
 import com.example.trainbookingsystem.presentation.auth.AuthActivity
 import com.example.trainbookingsystem.util.Constants
 import com.example.trainbookingsystem.util.ScreenState
+import com.google.firebase.auth.FirebaseAuth
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterFragment : Fragment() {
     private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
     private val viewModel: RegisterViewModel by viewModels()
+    @Inject
+    lateinit var firebaseAuth: FirebaseAuth
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,9 +61,22 @@ class RegisterFragment : Fragment() {
             role = Constants.USER,
             fullName = fullName,
         )
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                newUser.id = task.result.user?.uid ?: ""
+                saveUser(newUser)
+            } else Toast.makeText(
+                requireContext(),
+                task.exception?.localizedMessage ?: getString(R.string.error),
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun saveUser(newUser: Account) {
         lifecycleScope.launch {
             binding.buttonSignup.visibility = View.GONE
-            viewModel.register(newUser, password)
+            viewModel.register(newUser)
             viewModel.registerState.collect { state ->
                 when (state) {
                     is ScreenState.Loading -> {

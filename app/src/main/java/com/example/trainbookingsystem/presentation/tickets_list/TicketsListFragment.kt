@@ -66,7 +66,7 @@ class TicketsListFragment : Fragment() {
         }
 
         binding.buttonUpdate.setOnClickListener {
-            viewModel.refreshTickets()
+            getAllTickets()
             binding.editTextToDest.setText("")
             binding.editTextFromDest.setText("")
             binding.textViewDateFrom.text = ""
@@ -89,7 +89,8 @@ class TicketsListFragment : Fragment() {
 
     private fun getAllTickets() {
         lifecycleScope.launch {
-            viewModel.getAllTickets()
+            if (usersManager.getRole() == Constants.ADMIN) viewModel.getAllTickets()
+            else viewModel.getAllActiveTickets()
             viewModel.ticketsList.collect { state ->
                 processResponse(state)
             }

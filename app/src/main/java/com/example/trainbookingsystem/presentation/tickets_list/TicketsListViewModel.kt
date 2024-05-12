@@ -40,6 +40,13 @@ class TicketsListViewModel @Inject constructor(
         }
     }
 
+    fun getAllActiveTickets() = viewModelScope.launch {
+        ticketsRepository.getAllActiveTickets().let {
+            if (it.isNotEmpty()) _ticketsList.value = ScreenState.Success(it)
+            else _ticketsList.value = ScreenState.Error("Нет доступных билетов")
+        }
+    }
+
     fun refreshTickets() {
         getAllTickets()
     }

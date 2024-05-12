@@ -3,10 +3,12 @@ package com.example.trainbookingsystem.data.repository
 import android.util.Log
 import com.example.trainbookingsystem.data.model.Ticket
 import com.example.trainbookingsystem.data.model.TicketCheck
+import com.example.trainbookingsystem.util.DateUtils
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
 
@@ -21,6 +23,11 @@ class TicketsRepository @Inject constructor(
         return ticketsCollection.get().await().toObjects(Ticket::class.java)
     }
 
+    suspend fun getAllActiveTickets(): List<Ticket> {
+        return ticketsCollection.get().await().toObjects(Ticket::class.java)
+            .filter { !isDepartureTimePassed(it.departureTime) }
+    }
+
 
     suspend fun getFilteredTickets(
         startDestination: String,
@@ -29,30 +36,33 @@ class TicketsRepository @Inject constructor(
         arrivalTime: String
     ): List<Ticket> {
         return try {
-            val ticketsList = getAllTickets()
+            val ticketsList = getAllActiveTickets()
+
             var filteredList = ticketsList
+
             if (startDestination.isNotEmpty() && endDestination.isEmpty() && departureTime.isEmpty() && arrivalTime.isEmpty()) {
-               filteredList = ticketsList.filter { it.startDestination == startDestination }
+                filteredList = ticketsList.filter { it.startDestination == startDestination }
                 Log.d("FilteredTicket", filteredList.toString())
             }
             if (endDestination.isNotEmpty() && startDestination.isEmpty() && departureTime.isEmpty() && arrivalTime.isEmpty()) {
-                filteredList =ticketsList.filter { it.endDestination == endDestination }
+                filteredList = ticketsList.filter { it.endDestination == endDestination }
                 Log.d("FilteredTicket", filteredList.toString())
             }
             if (startDestination.isNotEmpty() && endDestination.isNotEmpty() && departureTime.isEmpty() && arrivalTime.isEmpty()) {
-                filteredList =ticketsList.filter { it.startDestination == startDestination && it.endDestination == endDestination }
+                filteredList =
+                    ticketsList.filter { it.startDestination == startDestination && it.endDestination == endDestination }
                 Log.d("FilteredTicket", filteredList.toString())
             }
 
             if (departureTime.isNotEmpty() && arrivalTime.isNotEmpty() && startDestination.isEmpty() && endDestination.isEmpty()) {
-                filteredList =ticketsList.filter {
+                filteredList = ticketsList.filter {
                     isTimeInRange(it.departureTime, departureTime, arrivalTime)
                 }
                 Log.d("FilteredTicket", filteredList.toString())
             }
 
             if (departureTime.isNotEmpty() && arrivalTime.isNotEmpty() && startDestination.isNotEmpty() && endDestination.isEmpty()) {
-                filteredList =ticketsList.filter {
+                filteredList = ticketsList.filter {
                     it.startDestination == startDestination && isTimeInRange(
                         it.departureTime,
                         departureTime,
@@ -62,7 +72,7 @@ class TicketsRepository @Inject constructor(
                 Log.d("FilteredTicket", filteredList.toString())
             }
             if (departureTime.isNotEmpty() && arrivalTime.isNotEmpty() && startDestination.isEmpty() && endDestination.isNotEmpty()) {
-                filteredList =ticketsList.filter {
+                filteredList = ticketsList.filter {
                     it.endDestination == endDestination && isTimeInRange(
                         it.departureTime,
                         departureTime,
@@ -72,7 +82,7 @@ class TicketsRepository @Inject constructor(
                 Log.d("FilteredTicket", filteredList.toString())
             }
             if (departureTime.isNotEmpty() && arrivalTime.isNotEmpty() && startDestination.isNotEmpty() && endDestination.isNotEmpty()) {
-                filteredList =ticketsList.filter {
+                filteredList = ticketsList.filter {
                     it.startDestination == startDestination && it.endDestination == endDestination && isTimeInRange(
                         it.departureTime,
                         departureTime,
@@ -82,17 +92,30 @@ class TicketsRepository @Inject constructor(
                 Log.d("FilteredTicket", filteredList.toString())
             }
 
-            if (filteredList.isEmpty()){
+            if (filteredList.isEmpty()) {
                 if (startDestination.isNotEmpty() && endDestination.isNotEmpty()) {
                     val connectingFlights = ticketsList.filter { it.startDestination == startDestination && it.endDestination != endDestination }
                     connectingFlights.forEach { connectingFlight ->
                         val intermediateDestinations = ticketsList.filter { it.startDestination == connectingFlight.endDestination && it.endDestination == endDestination }
                         if (intermediateDestinations.isNotEmpty()) {
-                            filteredList = filteredList + connectingFlight + intermediateDestinations
+                            val validIntermediateDestinations = intermediateDestinations.filter { intermediateFlight ->
+                                val connectingFlightArrivalTime = DateUtils.parseDateTime(connectingFlight.arrivalTime)
+                                val intermediateFlightDepartureTime = DateUtils.parseDateTime(intermediateFlight.departureTime)
+                                val timeDifferenceHours = DateUtils.calculateTimeDifferenceHours(connectingFlightArrivalTime, intermediateFlightDepartureTime)
+                                Log.d("TimeDifference", "First ${connectingFlight.arrivalTime},,,,, second : ${intermediateFlight.departureTime}")
+                                Log.d("TimeDifference", timeDifferenceHours.toString())
+                                timeDifferenceHours in 1..12
+                            }
+                            if (validIntermediateDestinations.isNotEmpty()) {
+                                filteredList = filteredList + connectingFlight + validIntermediateDestinations
+                            }
                         }
                     }
                 }
             }
+
+
+
 
             filteredList
         } catch (e: Exception) {
@@ -101,6 +124,12 @@ class TicketsRepository @Inject constructor(
         }
     }
 
+    private fun isDepartureTimePassed(departureTime: String): Boolean {
+        val currentTime = Date()
+        val dateFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault())
+        val departureDateTime = dateFormatter.parse(departureTime) ?: return false
+        return currentTime.after(departureDateTime)
+    }
 
     private fun isTimeInRange(
         ticketDepartureTime: String,
