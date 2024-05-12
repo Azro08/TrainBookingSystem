@@ -83,5 +83,9 @@
     <string name="create_account">Create Account</string>
     <string name="start_travelling_create_new_account">Start travelling, create new account</string>
     <string name="ticket_list">Ticket List</string>
+    <string name="minimum_price">Minimum Price</string>
+    <string name="maximum_price">Maximum Price</string>
+    <string name="minimum_duration">Minimum Duration</string>
+    <string name="maximum_duration">Maximum Duration</string>
 
 </resources>

@@ -283,6 +283,16 @@
                 app:layout_constraintStart_toStartOf="@+id/bg_address"
                 app:layout_constraintTop_toBottomOf="@id/bg_address" />
 
+            <ImageButton
+                android:id="@+id/imageButtonFilter"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/filter_icon"
+                app:layout_constraintEnd_toEndOf="@id/bg_address"
+                app:layout_constraintTop_toBottomOf="@id/bg_address"
+                android:importantForAccessibility="no" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvTickets"
                 android:layout_width="match_parent"

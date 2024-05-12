@@ -1,10 +1,13 @@
 package com.example.trainbookingsystem.presentation.tickets_list
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -67,6 +70,7 @@ class TicketsListFragment : Fragment() {
 
         binding.buttonUpdate.setOnClickListener {
             getAllTickets()
+            cheapestTicketIndex = -1
             binding.editTextToDest.setText("")
             binding.editTextFromDest.setText("")
             binding.textViewDateFrom.text = ""
@@ -85,6 +89,56 @@ class TicketsListFragment : Fragment() {
             ).show()
         }
 
+        binding.imageButtonFilter.setOnClickListener {
+            showFilterDialog()
+        }
+
+    }
+
+    private fun showFilterDialog() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_filter, null)
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Filter Tickets")
+            .setView(dialogView)
+            .setPositiveButton("Apply") { _, _ ->
+                // Apply filter
+                applyFilter(dialogView)
+            }
+            .setNegativeButton("Cancel", null)
+            .create()
+
+        dialog.show()
+    }
+
+    private fun applyFilter(dialogView: View) {
+        val minPrice = dialogView.findViewById<EditText>(R.id.editTextMinPrice).text.toString()
+            .toDoubleOrNull() ?: 0.0
+        val maxPrice = dialogView.findViewById<EditText>(R.id.editTextMaxPrice).text.toString()
+            .toDoubleOrNull()
+        val minDuration =
+            dialogView.findViewById<EditText>(R.id.editTextMinDuration).text.toString()
+                .toIntOrNull() ?: 0
+        val maxDuration =
+            dialogView.findViewById<EditText>(R.id.editTextMaxDuration).text.toString()
+                .toIntOrNull()
+
+        val filteredTickets =
+            viewModel.getFilteredTickets(minPrice, maxPrice, minDuration, maxDuration)
+        Log.d("TicketsListAdapter", "Cheapest ticket ${getCheapestTicketIndex(filteredTickets)}")
+        ticketsRvAdapter?.highlightCheapestTicket(getCheapestTicketIndex(filteredTickets), filteredTickets)
+        display(filteredTickets)
+    }
+
+    private fun getCheapestTicketIndex(tickets: List<Ticket>): Int {
+        var cheapestTicketIndex = -1
+        var cheapestTicketPrice = Double.MAX_VALUE
+        for ((index, ticket) in tickets.withIndex()) {
+            if (ticket.price[0] < cheapestTicketPrice) {
+                cheapestTicketPrice = ticket.price[0]
+                cheapestTicketIndex = index
+            }
+        }
+        return cheapestTicketIndex
     }
 
     private fun getAllTickets() {
@@ -135,10 +189,10 @@ class TicketsListFragment : Fragment() {
 
     private fun display(ticketList: List<Ticket>) {
         ticketsRvAdapter = TicketsListAdapter(
-            requireContext(),
-            ticketList.toMutableList(),
-            { navToBuyTicket(it.id) },
-            { deleteTicket(it.id) })
+            context = requireContext(),
+            tickets = ticketList.toMutableList(),
+            listener = { navToBuyTicket(it.id) },
+            deleteListener = { deleteTicket(it.id) })
         binding.rvTickets.setHasFixedSize(true)
         binding.rvTickets.layoutManager = LinearLayoutManager(requireContext())
         binding.rvTickets.adapter = ticketsRvAdapter

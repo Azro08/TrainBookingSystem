@@ -3,9 +3,9 @@ package com.example.trainbookingsystem.presentation.history
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.trainbookingsystem.R
 import com.example.trainbookingsystem.data.model.TicketCheck
 import com.example.trainbookingsystem.databinding.TicketCheckHolderBinding
-import com.example.trainbookingsystem.presentation.tickets_list.TicketsListAdapter
 
 class HistoryRvAdapter(private val ticketList: List<TicketCheck>) :
     RecyclerView.Adapter<HistoryRvAdapter.CheckViewHolder>() {
@@ -14,14 +14,17 @@ class HistoryRvAdapter(private val ticketList: List<TicketCheck>) :
         RecyclerView.ViewHolder(binding.root) {
         private var ticket: TicketCheck? = null
         fun bind(ticketCheck: TicketCheck) = with(binding) {
+            val context = root.context
             textViewDestFrom.text = ticketCheck.ticket.startDestination
             textViewDestTo.text = ticketCheck.ticket.endDestination
             dateFrom.text = ticketCheck.ticket.departureTime.substringBefore(' ')
-            timeFrom.text = ticketCheck.ticket.departureTime.substringAfter(' ') + TIME_TYPE
+            timeFrom.text = ticketCheck.ticket.departureTime.substringAfter(' ')
             dateTo.text = ticketCheck.ticket.arrivalTime.substringBefore(' ')
-            timeTo.text = ticketCheck.ticket.departureTime.substringAfter(' ') + TIME_TYPE
-            trainNum.text = "Train No ${ticketCheck.ticket.trainNum}"
-            price.text = "${ticketCheck.price} руб \n${(ticketCheck.paymentType)}"
+            timeTo.text = ticketCheck.ticket.departureTime.substringAfter(' ')
+            val trainNumText = context.getString(R.string.train_no) + ticketCheck.ticket.trainNum
+            trainNum.text = trainNumText
+            val priceText = "${ticketCheck.price} руб \n${(ticketCheck.paymentType)}"
+            price.text = priceText
             ticket = ticketCheck
         }
     }
@@ -42,9 +45,5 @@ class HistoryRvAdapter(private val ticketList: List<TicketCheck>) :
 
     override fun onBindViewHolder(holder: CheckViewHolder, position: Int) {
         holder.bind(ticketList[position])
-    }
-
-    companion object {
-        private const val TIME_TYPE = "AM"
     }
 }
