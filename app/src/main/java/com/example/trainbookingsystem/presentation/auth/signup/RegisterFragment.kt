@@ -14,6 +14,7 @@ import com.example.trainbookingsystem.data.model.Account
 import com.example.trainbookingsystem.databinding.FragmentRegisterBinding
 import com.example.trainbookingsystem.presentation.auth.AuthActivity
 import com.example.trainbookingsystem.util.Constants
+import com.example.trainbookingsystem.util.ScreenState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -59,14 +60,30 @@ class RegisterFragment : Fragment() {
         lifecycleScope.launch {
             binding.buttonSignup.visibility = View.GONE
             viewModel.register(newUser, password)
-            viewModel.registerState.collect {
-                if (it == "Done") {
-                    startActivity(Intent(requireActivity(), AuthActivity::class.java))
-                    requireActivity().finish()
-                } else {
-                    binding.buttonSignup.visibility = View.VISIBLE
-                    if (it != "") Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT)
-                        .show()
+            viewModel.registerState.collect { state ->
+                when (state) {
+                    is ScreenState.Loading -> {
+                        binding.buttonSignup.visibility = View.GONE
+                    }
+
+                    is ScreenState.Error -> {
+                        binding.buttonSignup.visibility = View.VISIBLE
+                        Toast.makeText(
+                            requireContext(),
+                            state.message ?: getString(R.string.error),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    is ScreenState.Success -> {
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.registered), Toast.LENGTH_SHORT
+                        ).show()
+                        startActivity(Intent(requireActivity(), AuthActivity::class.java))
+                        requireActivity().finish()
+                    }
+
                 }
             }
         }

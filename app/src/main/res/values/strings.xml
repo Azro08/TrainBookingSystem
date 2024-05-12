@@ -58,5 +58,14 @@
     <string name="login_successful">Login Successful</string>
     <string name="incorrect_password">Incorrect password</string>
     <string name="account_not_found">Account not found</string>
+    <string name="registered">Registered</string>
+    <string name="login_account">Login Account</string>
+    <string name="please_login_with_registered_account">Please login with registered account</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="if_you_don_t_have_an_account">If you don\'t have an account</string>
+    <string name="visit_our_terms_and_conditions_n_and_privacy_policy">Visit our Terms and Conditions\n and Privacy Policy</string>
+    <string name="reset_password">Reset password</string>
+    <string name="reset_link_was_sent_to_your_email">Reset link was sent to your email</string>
 
 </resources>

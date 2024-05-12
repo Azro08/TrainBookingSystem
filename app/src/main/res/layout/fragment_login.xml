@@ -12,7 +12,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login Account"
+        android:text="@string/login_account"
         android:textColor="@color/black"
         android:textSize="30sp" />
 
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Please login with registered account"
+        android:text="@string/please_login_with_registered_account"
         android:textColor="@color/grayText"
         android:textSize="16sp" />
 
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Email"
+        android:text="@string/email"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -52,20 +52,21 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_person"
             android:drawablePadding="10dp"
-            android:hint="Enter your email"
+            android:hint="@string/enter_your_email"
             android:inputType="textEmailAddress"
             android:padding="15dp"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/grayText"
             android:textCursorDrawable="@color/colorSecondary"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:importantForAutofill="no" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:text="Password"
+        android:text="@string/password"
         android:textColor="@color/black"
         android:textSize="20sp" />
 
@@ -90,13 +91,14 @@
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_lock"
             android:drawablePadding="10dp"
-            android:hint="Enter your password"
+            android:hint="@string/enter_your_password"
             android:inputType="textPassword"
             android:padding="15dp"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/grayText"
             android:textCursorDrawable="@color/colorSecondary"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:importantForAutofill="no" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -115,7 +117,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="If you don't have an account" />
+        android:text="@string/if_you_don_t_have_an_account" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSignUp"
@@ -130,12 +132,21 @@
         app:strokeWidth="2dp" />
 
     <TextView
+        android:id="@+id/textViewResetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/reset_password"
+        android:textColor="@color/blue"
+        android:textSize="12sp" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Visit our Terms and Conditions\n and Privacy Policy"
+        android:text="@string/visit_our_terms_and_conditions_n_and_privacy_policy"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp" />
 

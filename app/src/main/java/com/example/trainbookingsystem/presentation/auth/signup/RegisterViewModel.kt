@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.trainbookingsystem.data.model.Account
 import com.example.trainbookingsystem.data.repository.AuthRepository
+import com.example.trainbookingsystem.util.ScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,7 +16,7 @@ class RegisterViewModel @Inject constructor(
     private val authRep: AuthRepository,
 ) : ViewModel() {
 
-    private val _registerState = MutableStateFlow("")
+    private val _registerState = MutableStateFlow<ScreenState<String>>(ScreenState.Loading())
     val registerState = _registerState
 
 
@@ -24,10 +26,10 @@ class RegisterViewModel @Inject constructor(
                 account.id = uid
                 if (uid.isNotEmpty()) {
                     authRep.saveUser(account).let{
-                        _registerState.value = it
+                        _registerState.value = ScreenState.Success(it)
                     }
                 } else {
-                    _registerState.value = "Error creating account"
+                    _registerState.value = ScreenState.Error("Registration failed")
                 }
             }
 

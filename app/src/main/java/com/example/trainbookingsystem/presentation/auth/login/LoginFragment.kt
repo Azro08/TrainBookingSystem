@@ -40,6 +40,9 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         bindViewModelInputs()
+        binding.textViewResetPassword.setOnClickListener {
+            findNavController().navigate(R.id.nav_login_reset_password)
+        }
     }
 
     private fun login() {
@@ -83,8 +86,7 @@ class LoginFragment : Fragment() {
         if (error == getString(R.string.account_not_found)) {
             binding.editTextEmail.error = getString(R.string.account_not_found)
             binding.editTextPassword.error = null
-        }
-        else if (error == getString(R.string.incorrect_password)) {
+        } else if (error == getString(R.string.incorrect_password)) {
             binding.editTextPassword.error = getString(R.string.incorrect_password)
             binding.editTextEmail.error = null
         }
