@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.EditText
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -78,15 +77,9 @@ class TicketsListFragment : Fragment() {
         }
 
         binding.buttonSearch.setOnClickListener {
-            if (areAllFieldsFilled()) {
-                binding.loadingGig.visibility = View.VISIBLE
-                binding.rvTickets.visibility = View.GONE
-                getFilteredTickets()
-            } else Toast.makeText(
-                requireContext(),
-                getString(R.string.fill_upFields),
-                Toast.LENGTH_SHORT
-            ).show()
+            binding.loadingGig.visibility = View.VISIBLE
+            binding.rvTickets.visibility = View.GONE
+            getFilteredTickets()
         }
 
         binding.imageButtonFilter.setOnClickListener {
@@ -125,7 +118,10 @@ class TicketsListFragment : Fragment() {
         val filteredTickets =
             viewModel.getFilteredTickets(minPrice, maxPrice, minDuration, maxDuration)
         Log.d("TicketsListAdapter", "Cheapest ticket ${getCheapestTicketIndex(filteredTickets)}")
-        ticketsRvAdapter?.highlightCheapestTicket(getCheapestTicketIndex(filteredTickets), filteredTickets)
+        ticketsRvAdapter?.highlightCheapestTicket(
+            getCheapestTicketIndex(filteredTickets),
+            filteredTickets
+        )
         display(filteredTickets)
     }
 
@@ -221,22 +217,22 @@ class TicketsListFragment : Fragment() {
         binding.textViewError.visibility = View.VISIBLE
     }
 
-    private fun areAllFieldsFilled(): Boolean {
-        val startDest = binding.editTextFromDest.text.toString()
-        val endDest = binding.editTextToDest.text.toString()
-        val departureTime = binding.textViewDateFrom.text.toString()
-        val arrivalTime = binding.textViewDateTo.text.toString()
-
-        return when {
-            startDest.isNotEmpty() && endDest.isNotEmpty() -> {
-                if (departureTime.isNotEmpty() && arrivalTime.isEmpty()) {
-                    false // Arrival time is required if departure time is specified
-                } else !(arrivalTime.isNotEmpty() && departureTime.isEmpty())
-            }
-
-            else -> true // If start and/or end destinations are empty, ignore time validations
-        }
-    }
+//    private fun areAllFieldsFilled(): Boolean {
+//        val startDest = binding.editTextFromDest.text.toString()
+//        val endDest = binding.editTextToDest.text.toString()
+//        val departureTime = binding.textViewDateFrom.text.toString()
+//        val arrivalTime = binding.textViewDateTo.text.toString()
+//
+//        return when {
+//            startDest.isNotEmpty() && endDest.isNotEmpty() -> {
+//                if (departureTime.isNotEmpty() && arrivalTime.isEmpty()) {
+//                    false // Arrival time is required if departure time is specified
+//                } else !(arrivalTime.isNotEmpty() && departureTime.isEmpty())
+//            }
+//
+//            else -> true // If start and/or end destinations are empty, ignore time validations
+//        }
+//    }
 
 
     override fun onDestroy() {
